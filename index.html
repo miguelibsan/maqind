@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Define el conjunto de caracteres para el documento -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Asegura que IE se ejecute en el último modo de renderizado -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página sea responsive -->
+    <title>REPORTES MAQ IND</title> <!-- Título de la página web -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> <!-- Importa la fuente Ubuntu de Google Fonts -->
+    <style>
+        /* Estilos globales para todos los elementos */
+        *{
+            font-family: 'Ubuntu', sans-serif; /* Define la fuente para todos los elementos */
+            margin:0; padding:0; /* Elimina los márgenes y el relleno por defecto */
+            box-sizing: border-box; /* Cambia el modelo de caja para incluir el relleno y el borde en el ancho y la altura del elemento */
+            outline: none; border:none; /* Elimina el borde y el contorno de los elementos */
+            text-decoration: none; /* Elimina la decoración de texto (como los subrayados) */
+            text-transform: capitalize; /* Cambia el texto a mayúsculas */
+            transition: .2s linear; /* Añade una transición suave a los cambios de estilo */
+        }
+
+        /* Estilos para el contenedor principal */
+        .container{
+            background:linear-gradient(45deg, rgb(32, 0, 177), rgb(107, 210, 241)); /* Fondo degradado de azul a rosa */
+            padding:15px 9%; /* Relleno alrededor del contenedor */
+            padding-bottom: 268px; /* Relleno adicional en la parte inferior */
+        }
+
+        /* Estilos para el encabezado */
+        .container .heading{
+            text-align: center; /* Centra el texto */
+            padding-bottom: 15px; /* Añade relleno en la parte inferior */
+            padding-top: 5px; /* Añade relleno en la parte superior */
+            color:#fff; /* Color de texto blanco */
+            text-shadow: 0 5px 10px rgba(0,0,0,.2); /* Sombra de texto */
+            font-size: 50px; /* Tamaño de fuente grande */
+        }
+
+        /* Estilos para el contenedor de cajas */
+        .container .box-container{
+            display: grid; /* Usa un diseño de cuadrícula */
+            padding-top: 40px; /* Añade relleno en la parte superior */
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* Crea tantas columnas como sea posible con un mínimo de 270px y un máximo de 1 fracción del espacio disponible */
+            gap:15px; /* Añade un espacio de 15px entre las cajas */
+        }
+
+        /* Estilos para cada caja individual */
+        .container .box-container .box{
+            box-shadow: 0 5px 10px rgba(0,0,0,.2); /* Añade una sombra a la caja */
+            border-radius: 5px; /* Redondea las esquinas de la caja */
+            background: #fff; /* Fondo blanco para la caja */
+            text-align: center; /* Centra el texto dentro de la caja */
+            padding:50px 15px; /* Añade relleno alrededor del contenido de la caja */
+            width: 20%; /* Establece el ancho de la caja en el 20% del contenedor */
+            margin: 0 auto; /* Centra la caja horizontalmente */
+        }
+
+        /* Estilos para las imágenes dentro de las cajas */
+        .container .box-container .box img{
+            height: 80px; /* Establece la altura de las imágenes en 80px */
+        }
+
+        /* Estilos para los encabezados dentro de las cajas */
+        .container .box-container .box h3{
+            color:#444; /* Color de texto gris oscuro */
+            font-size: 22px; /* Tamaño de fuente */
+            padding:10px 0; /* Añade relleno arriba y abajo del encabezado */
+        }
+
+        /* Estilos para los párrafos dentro de las cajas */
+        .container .box-container .box p{
+            color:#777; /* Color de texto gris */
+            font-size: 15px; /* Tamaño de fuente */
+            line-height: 1.8; /* Espaciado entre líneas */
+        }
+
+        /* Estilos para los botones dentro de las cajas */
+        .container .box-container .box .btn{
+            margin-top: 10px; /* Añade margen en la parte superior del botón */
+            display: inline-block; /* Hace que el botón se comporte como un elemento en línea, pero permite el relleno y el margen */
+            background:#333; /* Fondo negro para el botón */
+            color:#fff; /* Color de texto blanco para el botón */
+            font-size: 17px; /* Tamaño de fuente para el botón */
+            border-radius: 5px; /* Redondea las esquinas del botón */
+            padding: 8px 25px; /* Añade relleno alrededor del texto del botón */
+        }
+
+        /* Estilos para los botones cuando se pasa el cursor sobre ellos */
+        .container .box-container .box .btn:hover{
+            letter-spacing: 1px; /* Añade espacio entre las letras cuando se pasa el cursor sobre el botón */
+        }
+
+        /* Estilos para las cajas cuando se pasa el cursor sobre ellas */
+        .container .box-container .box:hover{
+            box-shadow: 0 10px 15px rgba(0,0,0,.3); /* Añade una sombra más grande cuando se pasa el cursor sobre la caja */
+            transform: scale(1.03); /* Aumenta el tamaño de la caja cuando se pasa el cursor sobre ella */
+        }
+
+        /* Estilos para pantallas con un ancho máximo de 768px (por ejemplo, tablets y móviles) */
+        @media (max-width:768px){
+            .container{
+                padding:20px; /* Añade más relleno alrededor del contenedor */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Encabezado -->
+        <h1 class="heading">Bienvenido</h1>
+        <!-- Imagen del logo -->
+        <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto; width: 30%; height: auto;">
+        <!-- Contenedor de cajas -->
+        <div class="box-container">
+            <!-- Caja individual -->
+            <div class="box">
+                <!-- Imagen dentro de la caja -->
+                <img src="image/icon-7.png" alt="">
+                <!-- Encabezado dentro de la caja -->
+                <h3>Generar Nuevo reporte</h3>
+                <!-- Párrafo dentro de la caja -->
+                <p>Cada reporte nos ayuda a mejorar día a día.</p>
+                <!-- Botón dentro de la caja -->
+                <a href="menu.html" class="btn">Generar</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
