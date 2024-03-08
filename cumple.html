@@ -1,49 +1,48 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página con imagen de fondo y texto</title>
-  <style>
-    body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
+	<title>Página con Imagen de Fondo</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
 
-.contenedor {
-  background-image: url(/image/fondo3.jpg);
-  background-size: cover;
-  background-position: center center;
-  height: 50vh;
-  width: 50vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+		.container {
+			position: relative;
+			height: 100vh;
+			background-image: url('image/fondo3.jpg');
+			background-size: cover;
+			background-position: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 
-h1 {
-  font-size: 2em;
-  color: #ffffff;
-  text-align: center;
-  margin: 0;
-}
+			color: white;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		}
 
-h2 {
-  font-size: 3em;
-  color: #ffffff;
-  text-align: center;
-  margin: 0;
-}
+		h1 {
+			font-size: 6rem;
+			margin-bottom: 1rem;
+      text-align: left;
+      padding-left: 50px;
 
-  </style>
+		}
 
+		p {
+			font-size: 3rem;
+      text-align: left;
+      padding-left: 50px;
+		}
+	</style>
 </head>
 <body>
-  <div class="contenedor">
-    <h1>Título medianos</h1>
-    <h2>Título grandes</h2>
-  </div>
+	<div class="container">
+    <p>No te olvides de felicitar el dia de hoy a:</p>
+		<h1>NESTOR YAHIR LOZANO</h1>
+
+	</div>
 </body>
 </html>
