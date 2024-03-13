@@ -1,48 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMO AL MOMENTO</title>
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> <!-- Importa la fuente Ubuntu de Google Fonts -->
-  <link rel="stylesheet" href="style2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --texto-grande: 3rem; /* Tamaño inicial del texto grande */
+        }
+
+        body {
+            margin: 0;
+            background-color: #333; /* Gris oscuro */
+            color: white;
+            font-family: 'Oswald', sans-serif; /* Aplicar Oswald a los textos */
+            display: flex;
+            height: 100vh; /* Ocupar toda la altura de la pantalla */
+        }
+
+        .container {
+            flex: 1; /* Cada contenedor ocupa la mitad del espacio */
+            display: flex;
+            flex-direction: column; /* Alinear verticalmente */
+            align-items: center; /* Centrar el contenido verticalmente */
+        }
+
+        .left-container {
+            justify-content: space-around; /* Distribución equitativa del espacio */
+        }
+
+        .left-container img {
+            width: 850px;
+            height: 370px;
+            margin-bottom: 1px; /* Reducir espacio entre la imagen y el texto */
+            margin-top: 90PX;
+        }
+
+        .left-container h1 {
+            font-size: var(--texto-grande); /* Usar variable para el tamaño del texto */
+            text-align: center;
+            margin-top: 1PX;
+        }
+
+        .left-container .fecha {
+        font-size: 3rem; /* Ajusta este valor según lo que necesites */
+        font-weight: 700;
+        font-family: 'Oswald', sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+        .right-container {
+            flex-direction: column; /* Distribuir los boxes verticalmente */
+            justify-content: space-around; /* Distribución equitativa del espacio */
+            height: 100%; /* Ocupar toda la altura disponible */
+        }
+
+        .box {
+            width: 95%; /* Ancho de cada box para llenar el contenedor */
+            height: calc(14% - 10px); /* Ajustar la altura para 7 boxes */
+            background-color: black; /* Cambiar color a negro */
+            margin: 10px 0; /* Margen vertical ajustado para 7 boxes */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para los boxes */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem; /* Tamaño del texto grande */
+            border-radius: 20px;
+        }
+
+        .word1 {
+            color: rgb(19, 255, 19); /* Color para la primera palabra */
+            margin-left: 50px;
+        }
+
+        .word2 {
+            color: rgb(231, 104, 0); /* Color para la segunda palabra */
+            margin-left: 50px;
+        }
+
+        .word3 {
+            color: rgb(204, 0, 0); /* Color para la segunda palabra */
+            margin-left: 50px;
+        }
+
+        .word4 {
+            color: rgb(255, 255, 255); /* Color para la segunda palabra */
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>- SISTEMA DE MANO DE OBRA AL MOMENTO -</h1>
-  </header>
-  <script src="script.js"></script>
-  <main>
-    <section class="cards">
-      <article class="card">
-        <h2>CORTE</h2>
-        <p class="percentage orange">87%</p>
-      </article>
-      <article class="card">
-        <h2>DOBLEZ / DETALLADO</h2>
-        <p class="percentage orange">86%</p>
-      </article>
-      <article class="card">
-        <h2>MAQUINADO</h2>
-        <p class="percentage green">92%</p>
-      </article>
-      <article class="card">
-        <h2>TEPEPAPULCO</h2>
-        <p class="percentage green">92%</p>
-      </article>
-      <article class="card">
-        <h2>SOLDADURA</h2>
-        <p class="percentage red">50%</p>
-      </article>
-      <article class="card">
-        <h2>PINTURA</h2>
-        <p class="percentage orange">78%</p>
-      </article>
-      <article class="card">
-        <h2>EMBARQUES</h2>
-        <p class="percentage green">99%</p>
-      </article>
-    </section>
-  </main>
+    <div class="container left-container">
+        <img src="image/logo.png" alt="Descripción de la imagen">
+        <h1>SMO AL MOMENTO</h1>
+        <div class="fecha" id="fechaActual"></div>
+        
+    </div>
+    <div class="container right-container">
+        <div class="box"><span class="word4">EMBARQUES</span> <span class="word1">99%</span></div>
+        <div class="box"><span class="word4">TEPEAPULCO</span> <span class="word1">92%</span></div>
+        <div class="box"><span class="word4">MAQUINADO</span> <span class="word1">92%</span></div>
+        <div class="box"><span class="word4">CORTE LASER/PLASMA</span> <span class="word2">87%</span></div>
+        <div class="box"><span class="word4">DOBLEZ/DETALLADO</span> <span class="word2">86%</span></div>
+        <div class="box"><span class="word4">PINTURA</span> <span class="word2">78%</span></div>
+        <div class="box"><span class="word4">SOLDADURA</span> <span class="word3">61%</span></div>
+    </div>
+
+    <script>
+        const meses = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
+          "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
+        const fecha = new Date();
+        const textoFecha = fecha.getDate() + ' DE ' + meses[fecha.getMonth()];
+        document.getElementById('fechaActual').innerText = textoFecha;
+    </script>
+
 </body>
 </html>
