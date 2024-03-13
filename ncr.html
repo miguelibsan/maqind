@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --texto-grande: 3rem; /* Tamaño inicial del texto grande */
+        }
+
+        body {
+            margin: 0;
+            background-color: #333; /* Gris oscuro */
+            color: white;
+            font-family: 'Oswald', sans-serif; /* Aplicar Oswald a los textos */
+            display: flex;
+            height: 100vh; /* Ocupar toda la altura de la pantalla */
+        }
+
+        .container {
+            flex: 1; /* Cada contenedor ocupa la mitad del espacio */
+            display: flex;
+            flex-direction: column; /* Alinear verticalmente */
+            align-items: center; /* Centrar el contenido verticalmente */
+        }
+
+        .left-container {
+            justify-content: space-around; /* Distribución equitativa del espacio */
+        }
+
+        .left-container img {
+            width: 850px;
+            height: 370px;
+            margin-bottom: 1px; /* Reducir espacio entre la imagen y el texto */
+            margin-top: 90PX;
+        }
+
+        .left-container h1 {
+            font-size: var(--texto-grande); /* Usar variable para el tamaño del texto */
+            text-align: center;
+            margin-top: 1PX;
+        }
+
+        .right-container {
+            flex-direction: column; /* Distribuir los boxes verticalmente */
+            justify-content: flex-start; /* Alinear los boxes al inicio del contenedor */
+            height: 100%; /* Ocupar toda la altura disponible */
+        }
+
+        .box {
+            width: 95%; /* Ancho de cada box para llenar el contenedor */
+            height: calc(20% - 10px); /* Ajustar la altura considerando el margen */
+            background-color: red; /* Color rojo */
+            margin: 30px 0; /* Margen vertical para separar los boxes */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para los boxes */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem; /* Tamaño del texto grande */
+            border-radius: 20px;
+        }
+
+/*        .right-container .box:nth-last-child(1),       */
+/*        .right-container .box:nth-last-child(2) {      */
+/*        display: ;                                     */
+/* }   */
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container left-container">
+        <img src="image/logo.png" alt="Descripción de la imagen">
+        <h1>REPORTES NCR MARZO</h1>
+        <h1></h1>
+
+    </div>
+    <div class="container right-container">
+        <div class="box">INGENIERIA - CG3K848361 - 5 MARZO</div>
+        <div class="box">SOLDADURA - CG384827 - 5 MARZO</div>
+        <div class="box">DOBLEZ - CG38437003 - 7 MARZO</div>
+        <div class="box">MAQUINADO - P0217/1113 - 5 MARZO</div>
+        <div class="box">MAQUINADO TEPEAPULCO - 44183/1135 - 1 MARZO</div>
+    </div>
+</body>
+</html>
