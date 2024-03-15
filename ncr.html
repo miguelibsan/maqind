@@ -6,17 +6,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --texto-grande: 3rem; /* Tamaño inicial del texto grande */
+            --texto-grande: 2rem; /* Tamaño inicial del texto grande */
         }
 
         body {
-            margin: 0;
-            background-color: #333; /* Gris oscuro */
-            color: white;
-            font-family: 'Oswald', sans-serif; /* Aplicar Oswald a los textos */
-            display: flex;
-            height: 100vh; /* Ocupar toda la altura de la pantalla */
-        }
+    margin: 0;
+    background-image: url('image/fondosolda.jpg'); /* Establecer la imagen de fondo */
+    background-size: cover; /* Asegurar que la imagen cubra todo el espacio disponible */
+    background-position: center; /* Centrar la imagen de fondo */
+    background-repeat: no-repeat; /* Evitar que la imagen se repita */
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
 
         .container {
             flex: 1; /* Cada contenedor ocupa la mitad del espacio */
@@ -30,8 +34,8 @@
         }
 
         .left-container img {
-            width: 850px;
-            height: 370px;
+            width: 450px;
+            height: 200px;
             margin-bottom: 1px; /* Reducir espacio entre la imagen y el texto */
             margin-top: 90PX;
         }
@@ -61,6 +65,19 @@
             border-radius: 20px;
         }
 
+        .left-box {
+    background-color: rgba(128, 128, 128, 0.6); /* Gris con transparencia del 60% */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno para no tocar los bordes */
+    width: 40%; /* Ancho automático basado en el contenido */
+    display: flex; /* Para flexibilidad en el contenido */
+    flex-direction: column; /* Elementos en columna */
+    align-items: center; /* Centrar contenido horizontalmente */
+    justify-content: center; /* Centrar contenido verticalmente */
+}
+
+
+
 /*        .right-container .box:nth-last-child(1),       */
 /*        .right-container .box:nth-last-child(2) {      */
 /*        display: ;                                     */
@@ -72,10 +89,12 @@
 </head>
 <body>
     <div class="container left-container">
-        <img src="image/logo.png" alt="Descripción de la imagen">
-        <h1>REPORTES NCR MARZO</h1>
-        <h1></h1>
-
+        <div class="left-box">
+            <img src="image/logo.png" alt="Descripción de la imagen">
+            <br>
+            <br>
+            <h1>REPORTES NCR MARZO</h1>
+        </div>
     </div>
     <div class="container right-container">
         <div class="box">INGENIERIA - CG3K848361 - 5 MARZO </div>
