@@ -1,92 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --texto-grande: 2rem; /* Tamaño inicial del texto grande */
+            --texto-grande: 2rem;
+            /* Tamaño inicial del texto grande */
         }
 
         body {
-    margin: 0;
-    background-image: url('image/fondosolda.jpg'); /* Establecer la imagen de fondo */
-    background-size: cover; /* Asegurar que la imagen cubra todo el espacio disponible */
-    background-position: center; /* Centrar la imagen de fondo */
-    background-repeat: no-repeat; /* Evitar que la imagen se repita */
-    color: white;
-    font-family: 'Oswald', sans-serif;
-    display: flex;
-    height: 100vh;
-}
+            margin: 0;
+            background-image: url('image/fondosolda.jpg');
+            /* Establecer la imagen de fondo */
+            background-size: cover;
+            /* Asegurar que la imagen cubra todo el espacio disponible */
+            background-position: center;
+            /* Centrar la imagen de fondo */
+            background-repeat: no-repeat;
+            /* Evitar que la imagen se repita */
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            display: flex;
+            height: 100vh;
+        }
 
 
         .container {
-            flex: 1; /* Cada contenedor ocupa la mitad del espacio */
+            flex: 1;
+            /* Cada contenedor ocupa la mitad del espacio */
             display: flex;
-            flex-direction: column; /* Alinear verticalmente */
-            align-items: center; /* Centrar el contenido verticalmente */
+            flex-direction: column;
+            /* Alinear verticalmente */
+            align-items: center;
+            /* Centrar el contenido verticalmente */
         }
 
         .left-container {
-            justify-content: space-around; /* Distribución equitativa del espacio */
+            justify-content: space-around;
+            /* Distribución equitativa del espacio */
         }
 
         .left-container img {
             width: 450px;
             height: 200px;
-            margin-bottom: 1px; /* Reducir espacio entre la imagen y el texto */
+            margin-bottom: 1px;
+            /* Reducir espacio entre la imagen y el texto */
             margin-top: 90PX;
         }
 
         .left-container h1 {
-            font-size: var(--texto-grande); /* Usar variable para el tamaño del texto */
+            font-size: var(--texto-grande);
+            /* Usar variable para el tamaño del texto */
             text-align: center;
             margin-top: 1PX;
         }
 
         .right-container {
-            flex-direction: column; /* Distribuir los boxes verticalmente */
-            justify-content: flex-start; /* Alinear los boxes al inicio del contenedor */
-            height: 100%; /* Ocupar toda la altura disponible */
+            flex-direction: column;
+            /* Distribuir los boxes verticalmente */
+            justify-content: flex-start;
+            /* Alinear los boxes al inicio del contenedor */
+            height: 100%;
+            /* Ocupar toda la altura disponible */
         }
 
         .box {
-            width: 95%; /* Ancho de cada box para llenar el contenedor */
-            height: calc(20% - 10px); /* Ajustar la altura considerando el margen */
-            background-color: red; /* Color rojo */
-            margin: 30px 0; /* Margen vertical para separar los boxes */
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para los boxes */
+            width: 95%;
+            /* Ancho de cada box para llenar el contenedor */
+            height: calc(20% - 10px);
+            /* Ajustar la altura considerando el margen */
+            background-color: red;
+            /* Color rojo */
+            margin: 30px 0;
+            /* Margen vertical para separar los boxes */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            /* Sombra para los boxes */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem; /* Tamaño del texto grande */
+            font-size: 2.5rem;
+            /* Tamaño del texto grande */
             border-radius: 20px;
         }
 
         .left-box {
-    background-color: rgba(128, 128, 128, 0.6); /* Gris con transparencia del 60% */
-    border-radius: 20px; /* Bordes redondeados */
-    padding: 20px; /* Espaciado interno para no tocar los bordes */
-    width: 40%; /* Ancho automático basado en el contenido */
-    display: flex; /* Para flexibilidad en el contenido */
-    flex-direction: column; /* Elementos en columna */
-    align-items: center; /* Centrar contenido horizontalmente */
-    justify-content: center; /* Centrar contenido verticalmente */
-}
+            background-color: rgba(128, 128, 128, 0.6);
+            /* Gris con transparencia del 60% */
+            border-radius: 20px;
+            /* Bordes redondeados */
+            padding: 20px;
+            /* Espaciado interno para no tocar los bordes */
+            width: 40%;
+            /* Ancho automático basado en el contenido */
+            display: flex;
+            /* Para flexibilidad en el contenido */
+            flex-direction: column;
+            /* Elementos en columna */
+            align-items: center;
+            /* Centrar contenido horizontalmente */
+            justify-content: center;
+            /* Centrar contenido verticalmente */
+        }
 
 
 
-/*        .right-container .box:nth-last-child(1),       */
-/*        .right-container .box:nth-last-child(2) {      */
-/*        display: ;                                     */
-/* }   */
-
-
-
+        /*        .right-container .box:nth-last-child(1),       */
+        /*        .right-container .box:nth-last-child(2) {      */
+        /*        display: ;                                     */
+        /* }   */
     </style>
 </head>
+
 <body>
     <div class="container left-container">
         <div class="left-box">
@@ -104,4 +131,5 @@
         <div class="box">MAQUINADO TEPEAPULCO - 44183/1135 - 1 MARZO</div>
     </div>
 </body>
+
 </html>
