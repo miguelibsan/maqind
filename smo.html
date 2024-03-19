@@ -1,161 +1,189 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --texto-grande: 2rem;
-            /* Tamaño inicial del texto grande */
-        }
+      :root {
+        --texto-grande: 2rem;
+        /* Tamaño inicial del texto grande */
+      }
 
-        body {
-            margin: 0;
-            background-image: url('image/fondosolda.jpg');
-            /* Establecer la imagen de fondo */
-            background-size: cover;
-            /* Asegurar que la imagen cubra todo el espacio disponible */
-            background-position: center;
-            /* Centrar la imagen de fondo */
-            background-repeat: no-repeat;
-            /* Evitar que la imagen se repita */
-            color: white;
-            font-family: 'Oswald', sans-serif;
-            display: flex;
-            height: 100vh;
-        }
+      body {
+        margin: 0;
+        background-image: url("image/fondosolda.jpg");
+        /* Establecer la imagen de fondo */
+        background-size: cover;
+        /* Asegurar que la imagen cubra todo el espacio disponible */
+        background-position: center;
+        /* Centrar la imagen de fondo */
+        background-repeat: no-repeat;
+        /* Evitar que la imagen se repita */
+        color: white;
+        font-family: "Oswald", sans-serif;
+        display: flex;
+        height: 100vh;
+      }
 
+      .container {
+        flex: 1;
+        /* Cada contenedor ocupa la mitad del espacio */
+        display: flex;
+        flex-direction: column;
+        /* Alinear verticalmente */
+        align-items: center;
+        /* Centrar el contenido verticalmente */
+      }
 
-        .container {
-            flex: 1;
-            /* Cada contenedor ocupa la mitad del espacio */
-            display: flex;
-            flex-direction: column;
-            /* Alinear verticalmente */
-            align-items: center;
-            /* Centrar el contenido verticalmente */
-        }
+      .left-container {
+        justify-content: space-around;
+        /* Distribución equitativa del espacio */
+      }
 
-        .left-container {
-            justify-content: space-around;
-            /* Distribución equitativa del espacio */
-        }
+      .left-container img {
+        width: 450px;
+        height: 200px;
+        margin-bottom: 1px;
+        /* Reducir espacio entre la imagen y el texto */
+        margin-top: 90px;
+      }
 
-        .left-container img {
-            width: 450px;
-            height: 200px;
-            margin-bottom: 1px;
-            /* Reducir espacio entre la imagen y el texto */
-            margin-top: 90PX;
-        }
+      .left-container h1,
+      .left-container h2 {
+        font-size: var(--texto-grande);
+        text-align: center;
+        margin: 10px 0;
+      }
 
-        .left-container h1,
-        .left-container h2 {
-            font-size: var(--texto-grande);
-            text-align: center;
-            margin: 10px 0;
-        }
+      .right-container {
+        flex-direction: column;
+        /* Distribuir los boxes verticalmente */
+        justify-content: flex-start;
+        /* Alinear los boxes al inicio del contenedor */
+        height: 100%;
+        /* Ocupar toda la altura disponible */
+      }
 
-        .right-container {
-            flex-direction: column;
-            /* Distribuir los boxes verticalmente */
-            justify-content: flex-start;
-            /* Alinear los boxes al inicio del contenedor */
-            height: 100%;
-            /* Ocupar toda la altura disponible */
-        }
+      .box {
+        width: 95%;
+        /* Ancho de cada box para llenar el contenedor */
+        height: calc(20% - 10px);
+        /* Ajustar la altura considerando el margen */
+        background-color: rgba(0, 41, 117, 0.623);
+        /* Color rojo */
+        margin: 30px 0;
+        /* Margen vertical para separar los boxes */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        /* Sombra para los boxes */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        /* Tamaño del texto grande */
+        border-radius: 20px;
+      }
 
-        .box {
-            width: 95%;
-            /* Ancho de cada box para llenar el contenedor */
-            height: calc(20% - 10px);
-            /* Ajustar la altura considerando el margen */
-            background-color: rgba(0, 41, 117, 0.623);
-            /* Color rojo */
-            margin: 30px 0;
-            /* Margen vertical para separar los boxes */
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-            /* Sombra para los boxes */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            /* Tamaño del texto grande */
-            border-radius: 20px;
-        }
+      .left-box {
+        background-color: rgba(128, 128, 128, 0.6);
+        /* Gris con transparencia del 60% */
+        border-radius: 20px;
+        /* Bordes redondeados */
+        padding: 20px;
+        /* Espaciado interno para no tocar los bordes */
+        width: 40%;
+        /* Ancho automático basado en el contenido */
+        display: flex;
+        /* Para flexibilidad en el contenido */
+        flex-direction: column;
+        /* Elementos en columna */
+        align-items: center;
+        /* Centrar contenido horizontalmente */
+        justify-content: center;
+        /* Centrar contenido verticalmente */
+      }
 
-        .left-box {
-            background-color: rgba(128, 128, 128, 0.6);
-            /* Gris con transparencia del 60% */
-            border-radius: 20px;
-            /* Bordes redondeados */
-            padding: 20px;
-            /* Espaciado interno para no tocar los bordes */
-            width: 40%;
-            /* Ancho automático basado en el contenido */
-            display: flex;
-            /* Para flexibilidad en el contenido */
-            flex-direction: column;
-            /* Elementos en columna */
-            align-items: center;
-            /* Centrar contenido horizontalmente */
-            justify-content: center;
-            /* Centrar contenido verticalmente */
-        }
+      .verde {
+        color: rgb(101, 255, 101);
+        /* Color para la primera palabra */
+        margin-left: 50px;
+      }
 
-        .word1 {
-            color: rgb(101, 255, 101);
-            /* Color para la primera palabra */
-            margin-left: 50px;
-        }
+      .naranja {
+        color: rgb(231, 104, 0);
+        /* Color para la segunda palabra */
+        margin-left: 50px;
+      }
 
-        .word2 {
-            color: rgb(231, 104, 0);
-            /* Color para la segunda palabra */
-            margin-left: 50px;
-        }
+      .rojo {
+        color: rgb(204, 0, 0);
+        /* Color para la segunda palabra */
+        margin-left: 50px;
+      }
 
-        .word3 {
-            color: rgb(204, 0, 0);
-            /* Color para la segunda palabra */
-            margin-left: 50px;
-        }
-
-        .word4 {
-            color: rgb(255, 255, 255);
-            /* Color para la segunda palabra */
-        }
+      .blanco {
+        color: rgb(255, 255, 255);
+        /* Color para la segunda palabra */
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container left-container">
-        <div class="left-box">
-            <img src="image/logo.png" alt="Descripción de la imagen">
-            <h1>SISTEMA DE MANO DE OBRA</h1>
-            <h2 id="fechaActual"></h2>
-        </div>
+      <div class="left-box">
+        <img src="image/logo.png" alt="Descripción de la imagen" />
+        <h1>SISTEMA DE MANO DE OBRA</h1>
+        <h2 id="fechaActual"></h2>
+      </div>
     </div>
     <div class="container right-container">
-        <div class="box"><span class="word4">EMBARQUES</span> <span class="word1">95%</span></div>
-        <div class="box"><span class="word4">MAQUINADO</span> <span class="word1">94%</span></div>
-        <div class="box"><span class="word4">DOBLEZ/DETALLADO</span> <span class="word2">89%</span></div>
-        <div class="box"><span class="word4">CORTE LASER/PLASMA</span> <span class="word2">84%</span></div>
-        <div class="box"><span class="word4">TEPEAPULCO</span> <span class="word2">82%</span></div>
-        <div class="box"><span class="word4">SOLDADURA</span> <span class="word3">50%</span></div>
-        <div class="box"><span class="word4">PINTURA</span> <span class="word3">SIN REGISTROS</span></div>
+      <div class="box">
+        <span class="blanco">EMBARQUES</span> <span class="verde">95%</span>
+      </div>
+      <div class="box">
+        <span class="blanco">MAQUINADO</span> <span class="verde">94%</span>
+      </div>
+      <div class="box">
+        <span class="blanco">DOBLEZ/DETALLADO</span>
+        <span class="naranja">89%</span>
+      </div>
+      <div class="box">
+        <span class="blanco">CORTE LASER/PLASMA</span>
+        <span class="naranja">84%</span>
+      </div>
+      <div class="box">
+        <span class="blanco">TEPEAPULCO</span> <span class="naranja">82%</span>
+      </div>
+      <div class="box">
+        <span class="blanco">SOLDADURA</span> <span class="rojo">50%</span>
+      </div>
+      <div class="box">
+        <span class="blanco">PINTURA</span>
+        <span class="rojo">SIN REGISTROS</span>
+      </div>
     </div>
 
     <script>
-        const meses = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
-            "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
-        const fecha = new Date();
-        const textoFecha = fecha.getDate() + ' DE ' + meses[fecha.getMonth()];
-        document.getElementById('fechaActual').innerText = textoFecha;
+      const meses = [
+        "ENERO",
+        "FEBRERO",
+        "MARZO",
+        "ABRIL",
+        "MAYO",
+        "JUNIO",
+        "JULIO",
+        "AGOSTO",
+        "SEPTIEMBRE",
+        "OCTUBRE",
+        "NOVIEMBRE",
+        "DICIEMBRE",
+      ];
+      const fecha = new Date();
+      const textoFecha = fecha.getDate() + " DE " + meses[fecha.getMonth()];
+      document.getElementById("fechaActual").innerText = textoFecha;
     </script>
-
-</body>
-
+  </body>
 </html>
