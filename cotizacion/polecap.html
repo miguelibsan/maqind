@@ -127,7 +127,7 @@
 
         // Constants
         var PI = 3.1416;
-        var detallado = 1.1;
+        var detallado = 1.10;
         var ganancia = 1.15;
         var preciobarreno = cantidadbarreno * (diametrobarreno * PI);
 
@@ -139,17 +139,17 @@
 
         // Calculate price based on thickness range
         if (espesor >= 0 && espesor <= 0.5) {
-          precioplaca = resultadoplaca * 1.5;
+          precioplaca = resultadoplaca * 1.50;
         } else if (espesor >= 0.625 && espesor <= 1.0) {
-          precioplaca = resultadoplaca * 3.5;
+          precioplaca = resultadoplaca * 3.50;
         } else if (espesor >= 1.125 && espesor <= 1.5) {
-          precioplaca = resultadoplaca * 5.5;
+          precioplaca = resultadoplaca * 5.50;
         } else if (espesor >= 1.625 && espesor <= 2.0) {
-          precioplaca = resultadoplaca * 9.0;
+          precioplaca = resultadoplaca * 9.00;
         } else if (espesor >= 2.125 && espesor <= 2.5) {
-          precioplaca = resultadoplaca * 14.0;
+          precioplaca = resultadoplaca * 14.00;
         } else if (espesor >= 2.625 && espesor <= 3.0) {
-          precioplaca = resultadoplaca * 17.0;
+          precioplaca = resultadoplaca * 17.00;
         }
 
         // Calculate the final price with detailed markup and profit
