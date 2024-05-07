@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cotización</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        
+      body {
+        background-color: #3c3c3c;
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .container {
+        width: 70%;
+        margin-top: 120px;
+        margin-bottom: 120px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+      }
+
+      img {
+        width: 240px;
+        margin: 20px 0;
+      }
+
+      select {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        font-size: 16px;
+        cursor: pointer;
+        outline: none;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      select:focus {
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
+          0 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+    font-size: 42px; /* Tamaño más grande para encabezados */
+    font-weight: bold; /* Texto más grueso para destacar */
+}
+
+h2 {
+    font-size: 18px; /* Tamaño más grande para encabezados */
+    font-weight: normal; /* Texto más grueso para destacar */
+    max-width: 300px; /* Máximo ancho que el título puede alcanzar */
+
+    text-align: center;
+}
+
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>COTIZACIÓN</h1>
+      <img src="ARCOSA.png" alt="Logo Empresa" />
+      <h2>SELECCIONA EL DISEÑO QUE QUIERES COTIZAR</h2>
+      <BR>
+        <BR>
+            <BR>
+      <select id="options" onchange="navigate()">
+        <option value="">Selecciona una opción...</option>
+        <option value="pollcap.html">Poll Cap</option>
+        <option value="https://example2.com">En proceso</option>
+
+      </select>
+    </div>
+    <script>
+      function navigate() {
+        const url = document.getElementById("options").value;
+        if (url) {
+          window.location.href = url;
+        }
+      }
+    </script>
+  </body>
+</html>
