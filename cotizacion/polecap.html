@@ -118,7 +118,7 @@
         // Inputs from the HTML
         var diametro = parseFloat(document.getElementById("diametro").value);
         var espesor = parseFloat(document.getElementById("espesorplaca").value);
-        var cantidadbarreno = parseFloat(
+        var cantidadbarreno = parseInt(
           document.getElementById("cantidadbarreno").value
         );
         var diametrobarreno = parseFloat(
@@ -138,7 +138,7 @@
         var precioplaca = 0;
 
         // Calculate price based on thickness range
-        if (espesor >= 0 && espesor <= 0.5) {
+        if (espesor <= 0.500) {
           precioplaca = resultadoplaca * 1.50;
         } else if (espesor >= 0.625 && espesor <= 1.0) {
           precioplaca = resultadoplaca * 3.50;
@@ -153,7 +153,7 @@
         }
 
         // Calculate the final price with detailed markup and profit
-        var precioFinal = (precioplaca + preciobarreno) * detallado * ganancia;
+        var precioFinal = ((precioplaca + preciobarreno) * detallado) * ganancia;
 
         // Display the result in MXN format
         document.getElementById("resultado").innerText =
