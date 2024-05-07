@@ -1,136 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Precio Pollcap</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            background-color: #3c3c3c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-        }
-        .container {
-            width: 80%;
-            max-width: 600px;
-            margin-top: 20px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 {
-            font-size: 42px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .input-group {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        label {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 2px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-        .output {
-            font-size: 24px;
-            margin-top: 20px;
-            color: #333;
-            font-weight: bold;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
+      body {
+        background-color: #3c3c3c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        width: 80%;
+        max-width: 600px;
+        margin-top: 20px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        font-size: 42px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .input-group {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 2px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      .output {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        font-weight: bold;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
     </style>
-</head>
-<body>
-<div class="container">
-    <h1>POLE CAP</h1>
-    <div class="input-group">
+  </head>
+  <body>
+    <div class="container">
+      <h1>POLE CAP</h1>
+      <div class="input-group">
         <label for="diametro">DIAMETRO DE LA PIEZA:</label>
-        <input type="number" id="diametro" placeholder="Ingresa el dato en decimales">
-    </div>
-    <div class="input-group">
+        <input
+          type="number"
+          id="diametro"
+          placeholder="Ingresa el dato en decimales"
+        />
+      </div>
+      <div class="input-group">
         <label for="espesor">ESPESOR DE LA PLACA:</label>
-        <input type="number" id="espesorplaca" placeholder="Ingresa el dato en decimales">
-    </div>
-    <div class="input-group">
+        <input
+          type="number"
+          id="espesorplaca"
+          placeholder="Ingresa el dato en decimales"
+        />
+      </div>
+      <div class="input-group">
         <label for="cantidad">CANTIDAD DE BARRENOS (OPCIONAL):</label>
-        <input type="number" id="cantidad" placeholder="Cantidad en unidades">
-    </div>
-    <div class="input-group">
+        <input
+          type="number"
+          id="cantidadbarreno"
+          placeholder="Cantidad en unidades"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
         <label for="espesorBarreno">DIAMETRO DEL BARRENO:</label>
-        <input type="number" id="diametroBarreno" placeholder="Ingresa el dato en decimales">
+        <input
+          type="number"
+          id="diametrobarreno"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="output" id="resultado">0 MXN</div>
+      <button onclick="calcularPrecio()">Calcular</button>
+      <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
     </div>
-    <div class="output" id="resultado">0 MXN</div>
-    <button onclick="calcularPrecio()">Calcular</button>
-    <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
-</div>
 
-<script>
-    function calcularPrecio() {
+    <script>
+      function calcularPrecio() {
         // Inputs from the HTML
-        var diametro = parseFloat(document.getElementById('diametro').value);
-        var espesor = parseFloat(document.getElementById('espesorplaca').value);
-    
+        var diametro = parseFloat(document.getElementById("diametro").value);
+        var espesor = parseFloat(document.getElementById("espesorplaca").value);
+        var cantidadbarreno = parseFloat(
+          document.getElementById("cantidadbarreno").value
+        );
+        var diametrobarreno = parseFloat(
+          document.getElementById("diametrobarreno").value
+        );
+
         // Constants
         var PI = 3.1416;
         var detallado = 1.1;
         var ganancia = 1.15;
-    
+        var preciobarreno = cantidadbarreno * diametrobarreno;
+
         // Calculate the base result using the diameter
         var resultadoplaca = diametro * PI;
-    
+
         // Initialize the price of the plate
         var precioplaca = 0;
-    
-        // Calculate price based on thickness range
-        if (espesor >= 0 && espesor <= 0.50) {
-            precioplaca = resultadoplaca * 1.50;
-        } else if (espesor >= 0.625 && espesor <= 1.00) {
-            precioplaca = resultadoplaca * 3.50;
-        } else if (espesor >= 1.125 && espesor <= 1.50) {
-            precioplaca = resultadoplaca * 5.50;
-        } else if (espesor >= 1.625 && espesor <= 2.00) {
-            precioplaca = resultadoplaca * 9.00;
-        } else if (espesor >= 2.125 && espesor <= 2.50) {
-            precioplaca = resultadoplaca * 14.00;
-        } else if (espesor >= 2.625 && espesor <= 3.00) {
-            precioplaca = resultadoplaca * 17.00;
-        }
-    
-        // Calculate the final price with detailed markup and profit
-        var precioFinal = precioplaca * detallado * ganancia;
-    
-        // Display the result in MXN format
-        document.getElementById('resultado').innerText = precioFinal.toFixed(2) + " MXN";
-    }
-    </script>
-    
 
-</body>
+        // Calculate price based on thickness range
+        if (espesor >= 0 && espesor <= 0.5) {
+          precioplaca = resultadoplaca * 1.5;
+        } else if (espesor >= 0.625 && espesor <= 1.0) {
+          precioplaca = resultadoplaca * 3.5;
+        } else if (espesor >= 1.125 && espesor <= 1.5) {
+          precioplaca = resultadoplaca * 5.5;
+        } else if (espesor >= 1.625 && espesor <= 2.0) {
+          precioplaca = resultadoplaca * 9.0;
+        } else if (espesor >= 2.125 && espesor <= 2.5) {
+          precioplaca = resultadoplaca * 14.0;
+        } else if (espesor >= 2.625 && espesor <= 3.0) {
+          precioplaca = resultadoplaca * 17.0;
+        }
+
+        // Calculate the final price with detailed markup and profit
+        var precioFinal = (precioplaca + preciobarreno) * detallado * ganancia;
+
+        // Display the result in MXN format
+        document.getElementById("resultado").innerText =
+          precioFinal.toFixed(2) + " MXN";
+      }
+    </script>
+  </body>
 </html>
