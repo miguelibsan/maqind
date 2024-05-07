@@ -76,7 +76,7 @@
     </div>
     <div class="input-group">
         <label for="espesor">ESPESOR DE LA PLACA:</label>
-        <input type="number" step="0.125" id="espesor" placeholder="Ingresa el dato en decimales">
+        <input type="number" id="espesorplaca" placeholder="Ingresa el dato en decimales">
     </div>
     <div class="input-group">
         <label for="cantidad">CANTIDAD DE BARRENOS (OPCIONAL):</label>
@@ -84,44 +84,53 @@
     </div>
     <div class="input-group">
         <label for="espesorBarreno">DIAMETRO DEL BARRENO:</label>
-        <input type="number" step="0.01" id="espesorBarreno" placeholder="Ingresa el dato en decimales">
+        <input type="number" id="diametroBarreno" placeholder="Ingresa el dato en decimales">
     </div>
     <div class="output" id="resultado">0 MXN</div>
     <button onclick="calcularPrecio()">Calcular</button>
     <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
 </div>
+
 <script>
-    const detallado = 1.1;
-    const ganancia = 1.15;
-
     function calcularPrecio() {
-        const diametro = document.getElementById("diametro").value;
-        const espesor = document.getElementById("espesor").value;
-        const cantidad = document.getElementById("cantidad").value;
-        const espesorBarreno = document.getElementById("espesorBarreno").value;
-
-        let perimetro1 = diametro * 3.1416;
-        let perimetro2 = espesorBarreno ? espesorBarreno * 3.1416 : 0;
-        let precioespesor = calcularPrecioEspesor(espesor);
-
-        let precioFinal = (
-          (perimetro1 + perimetro2) *
-          precioespesor *
-          detallado *
-          ganancia
-        ).toFixed(2);
-        document.getElementById("resultado").textContent = precioFinal + " MXN";
+        // Inputs from the HTML
+        var diametro = parseFloat(document.getElementById('diametro').value);
+        var espesor = parseFloat(document.getElementById('espesorplaca').value);
+    
+        // Constants
+        var PI = 3.1416;
+        var detallado = 1.1;
+        var ganancia = 1.15;
+    
+        // Calculate the base result using the diameter
+        var resultadoplaca = diametro * PI;
+    
+        // Initialize the price of the plate
+        var precioplaca = 0;
+    
+        // Calculate price based on thickness range
+        if (espesor >= 0 && espesor <= 0.50) {
+            precioplaca = resultadoplaca * 1.50;
+        } else if (espesor >= 0.625 && espesor <= 1.00) {
+            precioplaca = resultadoplaca * 3.50;
+        } else if (espesor >= 1.125 && espesor <= 1.50) {
+            precioplaca = resultadoplaca * 5.50;
+        } else if (espesor >= 1.625 && espesor <= 2.00) {
+            precioplaca = resultadoplaca * 9.00;
+        } else if (espesor >= 2.125 && espesor <= 2.50) {
+            precioplaca = resultadoplaca * 14.00;
+        } else if (espesor >= 2.625 && espesor <= 3.00) {
+            precioplaca = resultadoplaca * 17.00;
+        }
+    
+        // Calculate the final price with detailed markup and profit
+        var precioFinal = precioplaca * detallado * ganancia;
+    
+        // Display the result in MXN format
+        document.getElementById('resultado').innerText = precioFinal.toFixed(2) + " MXN";
     }
+    </script>
+    
 
-    function calcularPrecioEspesor(espesor) {
-        if (espesor <= 0.5) return espesor * 1.5;
-        if (espesor <= 1.0) return espesor * 3.5;
-        if (espesor <= 1.5) return espesor * 5.5;
-        if (espesor <= 2.0) return espesor * 9.0;
-        if (espesor <= 2.5) return espesor * 14.0;
-        if (espesor <= 3.0) return espesor * 17.0;
-        return 0;
-    }
-</script>
 </body>
 </html>
