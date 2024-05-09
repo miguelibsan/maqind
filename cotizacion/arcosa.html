@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cotización</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-        
       body {
         background-color: #3c3c3c;
         display: flex;
         justify-content: center;
         height: 100vh;
         margin: 0;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         align-items: center;
       }
 
@@ -53,45 +52,49 @@
       }
 
       h1 {
-    font-size: 42px; /* Tamaño más grande para encabezados */
-    font-weight: bold; /* Texto más grueso para destacar */
-}
+        font-size: 42px; /* Tamaño más grande para encabezados */
+        font-weight: bold; /* Texto más grueso para destacar */
+      }
 
-h2 {
-    font-size: 18px; /* Tamaño más grande para encabezados */
-    font-weight: normal; /* Texto más grueso para destacar */
-    max-width: 300px; /* Máximo ancho que el título puede alcanzar */
+      h2 {
+        font-size: 18px; /* Tamaño más grande para encabezados */
+        font-weight: normal; /* Texto más grueso para destacar */
+        max-width: 300px; /* Máximo ancho que el título puede alcanzar */
 
-    text-align: center;
-}
-
-
-
-
-
+        text-align: center;
+      }
     </style>
   </head>
   <body>
     <div class="container">
+      <!-- Contenedor principal para elementos centrados -->
       <h1>COTIZACIÓN</h1>
+      <!-- Título principal -->
       <img src="ARCOSA.png" alt="Logo Empresa" />
+      <!-- Imagen del logo de la empresa -->
       <h2>SELECCIONA EL DISEÑO QUE QUIERES COTIZAR</h2>
-      <BR>
-        <BR>
-            <BR>
+      <!-- Subtítulo para instrucciones -->
+      <br />
+      <!-- Espacio entre elementos -->
       <select id="options" onchange="navigate()">
+        <!-- Menú desplegable con evento para cambiar de página -->
         <option value="">SELECCIONA UN DISEÑO</option>
+        <!-- Opción predeterminada -->
         <option value="bearingplate.html">Bearing Plate</option>
+        <!-- Opción para navegar a la página de 'Bearing Plate' -->
         <option value="polecap.html">Pole Cap</option>
-        <option value="https://example2.com">En proceso</option>
-
+        <!-- Opción para navegar a la página de 'Pole Cap' -->
+        <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNAaQvv7Uvd-Z7U5FJ-XN4fi8AovjYyt3wk1F49yXdw&s">En proceso</option>
+        <!-- Opción para navegar a un sitio externo aún en desarrollo -->
       </select>
     </div>
     <script>
       function navigate() {
-        const url = document.getElementById("options").value;
+        // Función para manejar la navegación
+        const url = document.getElementById("options").value; // Obtiene el valor del select
         if (url) {
-          window.location.href = url;
+          // Si hay una URL seleccionada
+          window.location.href = url; // Navega a la URL especificada
         }
       }
     </script>
