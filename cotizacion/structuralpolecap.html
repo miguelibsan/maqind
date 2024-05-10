@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!-- Define que el documento es HTML5 -->
+<html lang="es">
+  <!-- Establece el idioma del documento en español -->
+
+  <head>
+    <!-- Contiene metadatos/información para el documento -->
+    <meta charset="UTF-8" />
+    <!-- Especifica la codificación de caracteres UTF-8 para el contenido del documento -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Asegura que el sitio es adaptable a diferentes tamaños de pantalla (responsive) -->
+    <title>Precio Structural Pole Cap</title>
+    <!-- Define el título del documento que aparece en la pestaña del navegador -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Importa las fuentes de Google, especificamente 'Roboto' con los grosores 400 y 700 -->
+    <style>
+      /* Estilos CSS internos */
+      body {
+        background-color: #3c3c3c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        width: 80%;
+        padding-top: 10px;
+        max-width: 600px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        overflow: auto; /* Permite el desplazamiento vertical dentro del contenedor */
+        margin: 20px; /* Añade un margen alrededor del contenedor para evitar que toque los bordes de la pantalla */
+      }
+      h1 {
+        font-size: 42px; /* Tamaño de fuente de 42px */
+        font-weight: bold; /* Negrita */
+        text-align: center; /* Texto centrado */
+        padding-top: 280px;
+      }
+      h2 {
+        font-size: 18px; /* Tamaño de fuente de 18px */
+        font-weight: bold; /* Negrita */
+        text-align: left;
+        margin-bottom: 10px;
+      }
+      .input-group {
+        width: 100%; /* Ancho al 100% del contenedor */
+        margin-bottom: 10px; /* Margen inferior de 10px */
+      }
+      label {
+        font-size: 18px; /* Tamaño de fuente de 18px */
+        font-weight: normal; /* Peso de la fuente normal */
+        margin-bottom: 5px; /* Margen inferior de 5px */
+      }
+      input,
+      select,
+      button {
+        width: 100%; /* Ancho al 100% de su contenedor */
+        padding: 10px; /* Relleno de 10px */
+        margin-top: 2px; /* Margen superior de 2px */
+        border-radius: 5px; /* Bordes redondeados */
+        border: 1px solid #ccc; /* Borde sólido de 1px */
+        box-sizing: border-box; /* El ancho y alto incluyen el relleno y el borde */
+        background-color: white; /* Color de fondo blanco */
+      }
+      .output {
+        font-size: 24px; /* Tamaño de fuente de 24px */
+        margin-top: 20px; /* Margen superior de 20px */
+        color: #333; /* Color de texto gris oscuro */
+        font-weight: bold; /* Negrita */
+      }
+      button {
+        background-color: #4caf50; /* Color de fondo verde */
+        color: white; /* Color de texto blanco */
+        border: none; /* más estilos para botón */
+        cursor: pointer; /* Cambia el cursor a un puntero */
+        margin-top: 10px; /* Margen superior de 10px */
+      }
+      button:hover {
+        background-color: #45a049; /* Cambia el color de fondo al pasar el mouse */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>STRUCTURAL POLE CAP</h1>
+      <h2>DATOS DE PERIMETRO EXTERNO</h2>
+      <br />
+      <div class="input-group">
+        <label for="diametro">DIAMETRO EXTERNO:</label>
+        <input
+          type="number"
+          id="diametroexterno"
+          placeholder="Ingresa el dato en decimales"
+        />
+      </div>
+      <div class="input-group">
+        <label for="diametro">ESPESOR:</label>
+        <input
+          type="number"
+          id="espesor"
+          placeholder="Ingresa el dato en decimales"
+        />
+      </div>
+      <br />
+      <h2>DATOS DE PERIMETRO INTERNO</h2>
+      <div class="input-group">
+        <label for="espesor">LARGO:</label>
+        <input
+          type="number"
+          id="largo"
+          placeholder="Ingresa el dato en decimales"
+        />
+      </div>
+      <div class="input-group">
+        <label for="cantidad">ANCHO:</label>
+        <input type="number" id="ancho" placeholder="Cantidad en unidades" />
+      </div>
+      <br />
+      <h2>DATOS DE BARRENO 1 (OPCIONAL)</h2>
+      <div class="input-group">
+        <label for="cantidad">DIAMETRO:</label>
+        <input
+          type="number"
+          id="diametrobarreno1"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="cantidad">CANTIDAD:</label>
+        <input
+          type="number"
+          id="cantidadbarreno1"
+          placeholder="Cantidad en unidades"
+          value="0"
+        />
+      </div>
+      <br />
+      <h2>DATOS DE BARRENO 2 (OPCIONAL)</h2>
+      <div class="input-group">
+        <label for="cantidad">DIAMETRO:</label>
+        <input
+          type="number"
+          id="diametrobarreno2"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="cantidad">CANTIDAD:</label>
+        <input
+          type="number"
+          id="cantidadbarreno2"
+          placeholder="Cantidad en unidades"
+          value="0"
+        />
+      </div>
+      <br />
+      <div class="output" id="resultado">0 MXN</div>
+      <button onclick="calcularPrecio()">Calcular</button>
+      <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
+    </div>
+    <script>
+      function calcularPrecio() {
+        // Inputs
+        var diametroexterno = parseFloat(
+          document.getElementById("diametroexterno").value);
+        var largo = parseFloat(document.getElementById("largo").value);
+        var ancho = parseFloat(document.getElementById("ancho").value);
+        var espesor = parseFloat(document.getElementById("espesor").value);
+        var diametrobarreno1 = parseFloat(document.getElementById("diametrobarreno1"));
+        var cantidadbarreno1 = parseFloat(document.getElementById("cantidadbarreno1"));
+        var diametrobarreno2 = parseFloat(document.getElementById("diametrobarreno2"));
+        var cantidadbarreno2 = parseFloat(document.getElementById("cantidadbarreno2"));
+
+        // Constantes
+        var PI = Math.PI; // Uso de Math.PI para mayor precisión
+        var detallado = 1.1;
+        var ganancia = 1.16;
+        var precioespesor = 0;
+
+        // Calculos
+        var perimetroexterno = diametroexterno * PI;
+        var casiperimetrointerno = Math.sqrt((largo * largo) + (ancho * ancho));
+        var perimetrointerno = casiperimetrointerno * 4;
+        var perimetrobarrenototal = 
+
+
+        // Tabla espesores
+        if (espesor <= 0.5) {
+          precioespesor = espesor * 1.5;
+        } else if (espesor > 0.5 && espesor <= 1.0) {
+          precioespesor = espesor * 3.5;
+        } else if (espesor > 1.0 && espesor <= 1.5) {
+          precioespesor = espesor * 5.5;
+        } else if (espesor > 1.5 && espesor <= 2.0) {
+          precioespesor = espesor * 9.0;
+        } else if (espesor > 2.0 && espesor <= 2.5) {
+          precioespesor = espesor * 14.0;
+        } else if (espesor > 2.5 && espesor <= 3.0) {
+          precioespesor = espesor * 17.0;
+        }
+
+        var resultado =
+          (perimetroexterno + precioespesor) * detallado * ganancia;
+
+        // Display the result in MXN format
+        document.getElementById("resultado").innerText =
+          resultado.toFixed(2) + " MXN";
+      }
+    </script>
+  </body>
+</html>
