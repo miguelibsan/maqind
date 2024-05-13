@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Box</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"/>
+    <style>
+body {
+    background-color: #3c3c3c; /* Color de fondo del cuerpo de la página */
+    display: flex; /* Utiliza Flexbox para alinear elementos */
+    justify-content: center; /* Centra contenido horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    min-height: 100vh; /* Altura mínima completa de la ventana del navegador */
+    margin: 0; /* Elimina márgenes predeterminados */
+    padding-top: 100px; /* Añade un padding superior de 100px */
+    padding-bottom: 100px;
+    font-family: "Roboto", sans-serif; /* Define la familia de fuentes */
+}
+
+.container {
+    width: 80%; /* Ancho del contenedor al 80% del espacio disponible */
+    max-width: 600px; /* Ancho máximo de 600px */
+    background-color: white; /* Color de fondo blanco */
+    padding: 20px; /* Relleno de 20px en todos los lados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra de caja */
+    border-radius: 10px; /* Bordes redondeados */
+    display: flex; /* Utiliza Flexbox para alinear elementos internos */
+    flex-direction: column; /* Orientación de elementos en columna */
+}
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Título</h1>
+        <input type="text" placeholder="Escribe algo...">
+        <h1>Título</h1>
+        <input type="text" placeholder="Escribe algo...">
+
+
+    </div>
+</body>
+</html>
