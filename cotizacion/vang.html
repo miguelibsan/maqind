@@ -136,6 +136,15 @@
           value="0"
         />
       </div>
+      <div class="input-group">
+        <label for="diametro">CANTIDAD DE CHAFLANES:</label>
+        <input
+          type="number"
+          id="cantidadchaflan"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
 
       <div class="output" id="resultado">0 MXN</div>
       <button onclick="calcularPrecio()">Calcular</button>
@@ -152,6 +161,7 @@
           document.getElementById("cantidadbisel").value
         );
         var cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value);
+        var cantidadchaflan = parseFloat(document.getElementById("cantidadchaflan").value);
 
         var detallado = 1.1;
         var gn = 1.15;
@@ -180,15 +190,22 @@
         var preciocorte = perimetrocorte * preciopulgadacorte;
         var preciofinalcorte = preciocorte * detallado;
         var tiempobarrenado = (espesorcorte * 25) / 4.5; // valores acordados con Luis de Maquinados, 4.5 in de espesor se tarda 25 minutos
-        var preciobarrenado = 0;
+        var preciochaflan = 0;
         
         if (espesorcorte <= 0.75) {
           preciobarrenado = cantidadbarrenos * 20;
         } else {
           preciobarrenado = cantidadbarrenos * ((tiempobarrenado * 780) / 60);
-        } // valores acordados con Luis de Maquinados, 60 min de barrenado equivale a 780 mxn
+        } 
+
+        if (espesorcorte <= 0.75) {
+          preciochaflan = cantidadchaflan * 10;
+        } else {
+          preciochaflan = cantidadchaflan * (preciobarrenado / 2);
+        }
+
         var preciobisel = largo * 10 * cantidadbisel;
-        var preciomaquinado = (preciobarrenado * cantidadbarrenos) + preciobisel;
+        var preciomaquinado = (preciobarrenado * cantidadbarrenos) + preciobisel + preciochaflan;
         var precioprocesos = preciofinalcorte + preciomaquinado;
         var total = precioprocesos * gn;
         document.getElementById("resultado").innerText =
