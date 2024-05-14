@@ -196,12 +196,14 @@
           preciobarrenado = cantidadbarrenos * 20;
         } else {
           preciobarrenado = cantidadbarrenos * ((tiempobarrenado * 780) / 60);
-        } 
+        }
+        
+        var preciobarrenadounitario = ((tiempobarrenado * 780) / 60);
 
         if (espesorcorte <= 0.75) {
           preciochaflan = cantidadchaflan * 10;
         } else {
-          preciochaflan = cantidadchaflan * (preciobarrenado / 2);
+          preciochaflan = cantidadchaflan * (preciobarrenadounitario / 2);
         }
 
         var preciobisel = largo * 10 * cantidadbisel;
