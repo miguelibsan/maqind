@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vang</title>
+    <title>Precio Vang</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
@@ -180,11 +180,16 @@
         var preciocorte = perimetrocorte * preciopulgadacorte;
         var preciofinalcorte = preciocorte * detallado;
         var tiempobarrenado = (espesorcorte * 25) / 4.5; // valores acordados con Luis de Maquinados, 4.5 in de espesor se tarda 25 minutos
-        var preciobarrenado = (tiempobarrenado * 780) / 60; // valores acordados con Luis de Maquinados, 60 min de barrenado equivale a 780 mxn 
+        var preciobarrenado = 0;
+        
+        if (espesorcorte <= 0.75) {
+          preciobarrenado = cantidadbarrenos * 20;
+        } else {
+          preciobarrenado = (tiempobarrenado * 780) / 60;
+        } // valores acordados con Luis de Maquinados, 60 min de barrenado equivale a 780 mxn
         var preciobisel = largo * 10 * cantidadbisel;
         var preciomaquinado = (preciobarrenado * cantidadbarrenos) + preciobisel;
         var precioprocesos = preciofinalcorte + preciomaquinado;
-
         var total = precioprocesos * gn;
         document.getElementById("resultado").innerText =
           total.toFixed(2) + " MXN";
