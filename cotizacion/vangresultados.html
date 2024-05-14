@@ -138,6 +138,7 @@
       </div>
 
       <div class="output" id="resultado">0 MXN</div>
+      <div class="output" id="detalle"></div>
       <button onclick="calcularPrecio()">Calcular</button>
       <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
     </div>
@@ -150,8 +151,8 @@
           parseFloat(document.getElementById("espesorcorte").value) || 0;
         var cantidadbisel = parseFloat(
           document.getElementById("cantidadbisel").value
-        );
-        var cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value);
+        ) || 0;
+        var cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value) || 0;
 
         var detallado = 1.1;
         var gn = 1.15;
@@ -159,7 +160,6 @@
         var preciomaquinado = 0;
         var preciocorte = 0;
         var precioprocesos = 0;
-
 
         // PRECIO PULGADA CORTE
         if (espesorcorte <= 0.5) {
@@ -181,18 +181,33 @@
         var preciofinalcorte = preciocorte * detallado;
         var tiempobarrenado = (espesorcorte * 25) / 4.5; // valores acordados con Luis de Maquinados, 4.5 in de espesor se tarda 25 minutos
         var preciobarrenado = 0;
-        
+
         if (espesorcorte <= 0.75) {
           preciobarrenado = cantidadbarrenos * 20;
         } else {
           preciobarrenado = cantidadbarrenos * ((tiempobarrenado * 780) / 60);
         } // valores acordados con Luis de Maquinados, 60 min de barrenado equivale a 780 mxn
+
         var preciobisel = largo * 10 * cantidadbisel;
-        var preciomaquinado = (preciobarrenado * cantidadbarrenos) + preciobisel;
+        var preciomaquinado = preciobarrenado + preciobisel;
         var precioprocesos = preciofinalcorte + preciomaquinado;
         var total = precioprocesos * gn;
+
+        var detalle = `
+          <p>Precio por pulgada de corte: ${preciopulgadacorte} MXN</p>
+          <p>Perímetro de corte: ${perimetrocorte} pulgadas</p>
+          <p>Precio del corte: ${preciocorte.toFixed(2)} MXN</p>
+          <p>Precio final del corte (con detallado): ${preciofinalcorte.toFixed(2)} MXN</p>
+          <p>Tiempo de barrenado: ${tiempobarrenado.toFixed(2)} minutos</p>
+          <p>Precio del barrenado: ${preciobarrenado.toFixed(2)} MXN</p>
+          <p>Precio del biselado: ${preciobisel.toFixed(2)} MXN</p>
+          <p>Precio del maquinado: ${preciomaquinado.toFixed(2)} MXN</p>
+          <p>Precio de procesos: ${precioprocesos.toFixed(2)} MXN</p>
+        `;
+
         document.getElementById("resultado").innerText =
           total.toFixed(2) + " MXN";
+        document.getElementById("detalle").innerHTML = detalle;
       }
     </script>
   </body>
