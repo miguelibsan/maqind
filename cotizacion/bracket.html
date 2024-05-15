@@ -117,7 +117,7 @@
           placeholder="Ingresa el dato en decimales"
         />
       </div>
-      <h2>COTIZACIÓN MAQUINADO (OPCIONAL)</h2>
+      <h2>COTIZACIÓN DOBLEZ</h2>
       <div class="input-group">
         <label for="diametro">CANTIDAD DE BARRENOS:</label>
         <input
@@ -146,11 +146,7 @@
       function calcularPrecio() {
         var largo = parseFloat(document.getElementById("largo").value) || 0;
         var ancho = parseFloat(document.getElementById("ancho").value) || 0;
-        var espesorcorte =
-          parseFloat(document.getElementById("espesorcorte").value) || 0;
-        var cantidadbisel = parseFloat(
-          document.getElementById("cantidadbisel").value
-        );
+        var espesorcorte = parseFloat(document.getElementById("espesorcorte").value) || 0;
         var cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value);
 
         var detallado = 1.1;
@@ -175,21 +171,6 @@
         } else if (espesorcorte >= 2.625 && espesorcorte <= 3.0) {
           preciopulgadacorte = 17.0;
         }
-
-        var perimetrocorte = largo * 2 + ancho * 2;
-        var preciocorte = perimetrocorte * preciopulgadacorte;
-        var preciofinalcorte = preciocorte * detallado;
-        var tiempobarrenado = (espesorcorte * 25) / 4.5; // valores acordados con Luis de Maquinados, 4.5 in de espesor se tarda 25 minutos
-        var preciobarrenado = 0;
-        
-        if (espesorcorte <= 0.75) {
-          preciobarrenado = cantidadbarrenos * 20;
-        } else {
-          preciobarrenado = (tiempobarrenado * 780) / 60;
-        } // valores acordados con Luis de Maquinados, 60 min de barrenado equivale a 780 mxn
-        var preciobisel = largo * 10 * cantidadbisel;
-        var preciomaquinado = (preciobarrenado * cantidadbarrenos) + preciobisel;
-        var precioprocesos = preciofinalcorte + preciomaquinado;
 
         var total = precioprocesos * gn;
         document.getElementById("resultado").innerText =
