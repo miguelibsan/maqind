@@ -113,27 +113,27 @@
       function calcularPrecio() {
         var espesorpieza = parseFloat(document.getElementById("espesorpieza").value);
         var diametropieza = parseFloat(document.getElementById("diametropieza").value);
-        var preciopulgadacorte = 0;
+        var preciocorteplasma = 0;
         var detallado = 1.1;
         var gn = 1.15;
 
         // TABLA PRECIO CORTE PLASMA
         if (espesorpieza <= 0.5) {
-          preciopulgadacorte = 1.5;
+          preciocorteplasma = 1.5;
         } else if (espesorpieza >= 0.625 && espesorpieza <= 1.0) {
-          preciopulgadacorte = 3.5;
+          preciocorteplasma = 3.5;
         } else if (espesorpieza >= 1.125 && espesorpieza <= 1.5) {
-          preciopulgadacorte = 5.5;
+          preciocorteplasma = 5.5;
         } else if (espesorpieza >= 1.625 && espesorpieza <= 2.0) {
-          preciopulgadacorte = 9.0;
+          preciocorteplasma = 9.0;
         } else if (espesorpieza >= 2.125 && espesorpieza <= 2.5) {
-          preciopulgadacorte = 14.0;
+          preciocorteplasma = 14.0;
         } else if (espesorpieza >= 2.625 && espesorpieza <= 3.0) {
-          preciopulgadacorte = 17.0;
+          preciocorteplasma = 17.0;
         }
 
         var perimetropieza = diametropieza * 3.1416;
-        var preciocorte = preciopulgadacorte * perimetropieza;
+        var preciocorte = preciocorteplasma * perimetropieza;
         var resultado = preciocorte * detallado * gn;
         document.getElementById("resultado").innerText = resultado.toFixed(2) + " MXN";
       }
