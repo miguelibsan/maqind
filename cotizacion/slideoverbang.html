@@ -1,261 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Precio Slide Over Vang</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        background-color: #3c3c3c;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-        margin: 0;
-        padding-top: 100px;
-        padding-bottom: 100px;
-        font-family: "Roboto", sans-serif;
-      }
-
-      .container {
-        width: 80%;
-        max-width: 600px;
-        background-color: white;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-      }
-
-      h1 {
-        font-size: 42px;
-        font-weight: bold;
-        text-align: center;
-      }
-
-      h3 {
-        font-size: 14px;
-        font-weight: normal;
-        text-align: left;
-      }
-
-      .input-group {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      label {
-        font-size: 18px;
-        font-weight: normal;
-        margin-bottom: 5px;
-        display: block;
-      }
-
-      input,
-      select,
-      button {
-        width: 100%;
-        padding: 10px;
-        margin-top: 2px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        background-color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .output {
-        font-size: 24px;
-        margin-top: 20px;
-        color: #333;
-        font-weight: bold;
-      }
-
-      button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        cursor: pointer;
-        margin-top: 10px;
-      }
-
-      button:hover {
-        background-color: #45a049;
-      }
-
-      .hidden {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>SLIDE OVER BANG</h1>
-      <h2>COTIZACIÓN CORTE</h2>
-      <div class="input-group">
-        <label for="espesorpieza">ESPESOR DE LA PIEZA:</label>
-        <input
-          type="number"
-          id="espesorpieza"
-          placeholder="Dato de pulgadas en decimales"
-        />
-      </div>
-      <div class="input-group">
-        <label for="perimetropieza">DIAMETRO EXTERNO DE LA PIEZA:</label>
-        <input
-          type="number"
-          id="diametropiezaexterno"
-          placeholder="Dato de pulgadas en decimales"
-        />
-      </div>
-      <div class="input-group">
-        <label for="perimetropieza">DIAMETRO INTERNO DE LA PIEZA:</label>
-        <input
-          type="number"
-          id="diametropiezainterno"
-          placeholder="Dato de pulgadas en decimales"
-        />
-      </div>
-      <h2>COTIZACIÓN MAQUINADO</h2>
-      <h3>
-        EN EL CASO DE HABER BARRENOS CON DIMENSIONES DIFERENTES, INGRESA LOS
-        DATOS DE CADA TIPO DE BARRENO
-      </h3>
-      <br />
-      <div class="input-group">
-        <label for="perimetropieza">DIAMETRO DE BARRENO:</label>
-        <input
-          type="number"
-          id="diametrobarreno1"
-          placeholder="Dato de pulgadas en decimales"
-          value="0"
-        />
-      </div>
-      <div class="input-group">
-        <label for="perimetropieza">CANTIDAD DE BARRENO:</label>
-        <input
-          type="number"
-          id="cantidadbarreno1"
-          placeholder="Dato de pulgadas en decimales"
-          value="0"
-        />
-      </div>
-      <div class="input-group">
-        <label for="perimetropieza">DIAMETRO DE BARRENO 2:(OPCIONAL)</label>
-        <input
-          type="number"
-          id="diametrobarreno2"
-          placeholder="Dato de pulgadas en decimales"
-          value="0"
-        />
-      </div>
-      <div class="input-group">
-        <label for="perimetropieza">CANTIDAD DE BARRENO 2:(OPCIONAL)</label>
-        <input
-          type="number"
-          id="cantidadbarreno2"
-          placeholder="Dato de pulgadas en decimales"
-          value="0"
-        />
-      </div>
-      <div class="input-group">
-        <label for="perimetropieza">DIAMETRO DE BARRENO 3:(OPCIONAL)</label>
-        <input
-          type="number"
-          id="diametrobarreno3"
-          placeholder="Dato de pulgadas en decimales"
-          value="0"
-        />
-      </div>
-      <div class="input-group">
-        <label for="perimetropieza">CANTIDAD DE BARRENO 3:(OPCIONAL)</label>
-        <input
-          type="number"
-          id="cantidadbarreno3"
-          placeholder="Dato de pulgadas en decimales"
-          value="0"
-        />
-      </div>
-
-      <div class="output" id="resultado">0 MXN</div>
-      <button onclick="calcularPrecio()">Calcular</button>
-      <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precio Slide Over Bang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #3c3c3c;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 100px;
+      padding-bottom: 100px;
+      font-family: "Roboto", sans-serif;
+    }
+    .container {
+      width: 80%;
+      max-width: 600px;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      font-size: 42px;
+      font-weight: bold;
+      text-align: center;
+    }
+    h2, h3 {
+      font-size: 14px;
+      font-weight: normal;
+      text-align: left;
+    }
+    .input-group {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    label {
+      font-size: 18px;
+      font-weight: normal;
+      margin-bottom: 5px;
+      display: block;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 2px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .output {
+      font-size: 24px;
+      margin-top: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SLIDE OVER BANG</h1>
+    <h2>COTIZACIÓN CORTE</h2>
+    <div class="input-group">
+      <label for="espesorpieza">ESPESOR DE LA PIEZA:</label>
+      <input type="number" id="espesorpieza" placeholder="Dato de pulgadas en decimales">
     </div>
+    <div class="input-group">
+      <label for="diametropiezaexterno">DIÁMETRO EXTERNO DE LA PIEZA:</label>
+      <input type="number" id="diametropiezaexterno" placeholder="Dato de pulgadas en decimales">
+    </div>
+    <div class="input-group">
+      <label for="diametropiezainterno">DIÁMETRO INTERNO DE LA PIEZA:</label>
+      <input type="number" id="diametropiezainterno" placeholder="Dato de pulgadas en decimales">
+    </div>
+    <h2>COTIZACIÓN MAQUINADO</h2>
+    <h3>EN EL CASO DE HABER BARRENOS CON DIMENSIONES DIFERENTES, INGRESA LOS DATOS DE CADA TIPO DE BARRENO</h3>
+    <br>
+    <div class="input-group">
+      <label for="diametrobarreno1">DIÁMETRO DE BARRENO:</label>
+      <input type="number" id="diametrobarreno1" placeholder="Dato de pulgadas en decimales" value="0">
+    </div>
+    <div class="input-group">
+      <label for="cantidadbarreno1">CANTIDAD DE BARRENO:</label>
+      <input type="number" id="cantidadbarreno1" placeholder="Cantidad" value="0">
+    </div>
+    <div class="input-group">
+      <label for="diametrobarreno2">DIÁMETRO DE BARRENO 2: (OPCIONAL)</label>
+      <input type="number" id="diametrobarreno2" placeholder="Dato de pulgadas en decimales" value="0">
+    </div>
+    <div class="input-group">
+      <label for="cantidadbarreno2">CANTIDAD DE BARRENO 2: (OPCIONAL)</label>
+      <input type="number" id="cantidadbarreno2" placeholder="Cantidad" value="0">
+    </div>
+    <div class="input-group">
+      <label for="diametrobarreno3">DIÁMETRO DE BARRENO 3: (OPCIONAL)</label>
+      <input type="number" id="diametrobarreno3" placeholder="Dato de pulgadas en decimales" value="0">
+    </div>
+    <div class="input-group">
+      <label for="cantidadbarreno3">CANTIDAD DE BARRENO 3: (OPCIONAL)</label>
+      <input type="number" id="cantidadbarreno3" placeholder="Cantidad" value="0">
+    </div>
+    <div class="output" id="resultado">0 MXN</div>
+    <button onclick="calcularPrecio()">Calcular</button>
+    <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
+  </div>
 
-    <script>
-      function calcularPrecio() {
-        var espesorpieza = parseFloat(
-          document.getElementById("espesorpieza").value
-        );
-        var diametropiezaexterno = parseFloat(
-          document.getElementById("diametropiezaexterno").value
-        );
-        var diametropiezainterno = parseFloat(
-          document.getElementById("diametropiezainterno").value
-        );
-        var diametrobarreno1 = parseFloat(
-          document.getElementById("diametrobarreno1").value
-        );
-        var diametrobarreno2 = parseFloat(
-          document.getElementById("diametrobarreno2").value
-        );
-        var diametrobarreno3 = parseFloat(
-          document.getElementById("diametrobarreno3").value
-        );
-        var cantidadbarreno1 = parseFloat(
-          document.getElementById("cantidadbarreno1").value
-        );
-        var cantidadbarreno2 = parseFloat(
-          document.getElementById("cantidadbarreno2").value
-        );
-        var cantidadbarreno3 = parseFloat(
-          document.getElementById("cantidadbarreno3").value
-        );
+  <div class="container">
+    <h1>GUÍA VISUAL</h1>
+    <img src="fotos/bearingplate.jpg" alt="" style="width:100%" />
 
-        var preciocorteplasma = 0;
-        var detallado = 1.1;
-        var gn = 1.15;
+  </div>
 
-        // TABLA PRECIO CORTE PLASMA
-        if (espesorpieza <= 0.5) {
-          preciocorteplasma = 1.5;
-        } else if (espesorpieza >= 0.625 && espesorpieza <= 1.0) {
-          preciocorteplasma = 3.5;
-        } else if (espesorpieza >= 1.125 && espesorpieza <= 1.5) {
-          preciocorteplasma = 5.5;
-        } else if (espesorpieza >= 1.625 && espesorpieza <= 2.0) {
-          preciocorteplasma = 9.0;
-        } else if (espesorpieza >= 2.125 && espesorpieza <= 2.5) {
-          preciocorteplasma = 14.0;
-        } else if (espesorpieza >= 2.625 && espesorpieza <= 3.0) {
-          preciocorteplasma = 17.0;
-        }
+  <script>
+    function calcularPrecio() {
+      var espesorpieza = parseFloat(document.getElementById("espesorpieza").value) || 0;
+      var diametropiezaexterno = parseFloat(document.getElementById("diametropiezaexterno").value) || 0;
+      var diametropiezainterno = parseFloat(document.getElementById("diametropiezainterno").value) || 0;
+      var diametrobarreno1 = parseFloat(document.getElementById("diametrobarreno1").value) || 0;
+      var diametrobarreno2 = parseFloat(document.getElementById("diametrobarreno2").value) || 0;
+      var diametrobarreno3 = parseFloat(document.getElementById("diametrobarreno3").value) || 0;
+      var cantidadbarreno1 = parseFloat(document.getElementById("cantidadbarreno1").value) || 0;
+      var cantidadbarreno2 = parseFloat(document.getElementById("cantidadbarreno2").value) || 0;
+      var cantidadbarreno3 = parseFloat(document.getElementById("cantidadbarreno3").value) || 0;
 
-        // TABLA PRECIO BARRENOS
-        if (espesorpieza <= 0.25) {
-          preciobarrenadounitario =
-            (cantidadbarreno1 * (diametrobarreno1 * 3.1416)) + (cantidadbarreno2 * (diametrobarreno2 * 3.1416)) + (cantidadbarreno3 * (diametrobarreno3 * 3.1416))* preciocorteplasma;
-        } else if (espesorpieza <= 0.75) {
-          preciobarrenadounitario = cantidadbarrenos * 20;
-        } else if (espesorpieza > 0.75) {
-          preciobarrenadounitario =
-            cantidadbarrenos * ((tiempobarrenado * 720) / 60);
-        }
+      var preciocorteplasma = 0;
+      var detallado = 1.1;
+      var gn = 1.15;
 
-        var perimetrototalpieza = (diametropiezaexterno * 3.1416) + (diametropiezainterno * 3.1416)
-        var preciocorte = (perimetrototalpieza * preciocorteplasma) * detallado;
-
-        var preciobarreno1 = diametrobarreno1 * 3.1416
-
-
-        document.getElementById("resultado").innerText =
-          resultado.toFixed(2) + " MXN";
+      // TABLA PRECIO CORTE PLASMA
+      if (espesorpieza <= 0.5) {
+        preciocorteplasma = 1.5;
+      } else if (espesorpieza <= 1.0) {
+        preciocorteplasma = 3.5;
+      } else if (espesorpieza <= 1.5) {
+        preciocorteplasma = 5.5;
+      } else if (espesorpieza <= 2.0) {
+        preciocorteplasma = 9.0;
+      } else if (espesorpieza <= 2.5) {
+        preciocorteplasma = 14.0;
+      } else if (espesorpieza <= 3.0) {
+        preciocorteplasma = 17.0;
       }
-    </script>
-  </body>
+
+      var perimetrototalpieza = (diametropiezaexterno * 3.1416) + (diametropiezainterno * 3.1416);
+      var preciocorte = (perimetrototalpieza * preciocorteplasma) * detallado;
+
+      var preciobarrenadounitario = 0;
+
+      // TABLA PRECIO BARRENOS
+      if (espesorpieza <= 0.25) {
+        preciobarrenadounitario =
+          (cantidadbarreno1 * diametrobarreno1 + cantidadbarreno2 * diametrobarreno2 + cantidadbarreno3 * diametrobarreno3) * preciocorteplasma;
+      } else if (espesorpieza <= 0.75) {
+        preciobarrenadounitario = (cantidadbarreno1 + cantidadbarreno2 + cantidadbarreno3) * 20;
+      } else if (espesorpieza > 0.75) {
+        preciobarrenadounitario =
+          (cantidadbarreno1 + cantidadbarreno2 + cantidadbarreno3) * 720 / 60;
+      }
+
+      var preciobarrenado = preciobarrenadounitario;
+
+      var resultado = (preciocorte + preciobarrenado) * gn;
+
+      document.getElementById("resultado").innerText = resultado.toFixed(2) + " MXN";
+    }
+  </script>
+</body>
 </html>
