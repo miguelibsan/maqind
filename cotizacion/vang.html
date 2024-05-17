@@ -146,7 +146,7 @@
         />
       </div>
       <div class="input-group">
-        <label for="diametro">CANTIDAD DE CHAFLANES: (OPCIONAL)</label>
+        <label for="diametro">CANTIDAD DE CHAFLANES: (SI ES POR AMBOS LADOS CUENTA COMO 2)</label>
         <input
           type="number"
           id="cantidadchaflanes"
@@ -205,7 +205,7 @@
         } else if (espesorpieza <= 0.75) {
           preciobarrenadounitario = cantidadbarrenos * 20;
         } else if (espesorpieza > 0.75) {
-          preciobarrenadounitario = cantidadbarrenos * ((tiempobarrenado * 780) / 60);
+          preciobarrenadounitario = cantidadbarrenos * ((tiempobarrenado * 720) / 60);
         }
 
         // TABLA PRECIO CHAFLANES
