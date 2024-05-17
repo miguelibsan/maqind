@@ -236,15 +236,22 @@
           preciocorteplasma = 17.0;
         }
 
-        var perimetropiezaexterno = diametropiezaexterno * 3.1416;
-        var perimetropiezainterno = diametropiezainterno * 3.1416;
-        var perimetropiezatotal = perimetropiezaexterno + perimetropiezainterno;
+        // TABLA PRECIO BARRENOS
+        if (espesorpieza <= 0.25) {
+          preciobarrenadounitario =
+            (cantidadbarreno1 * (diametrobarreno1 * 3.1416)) + (cantidadbarreno2 * (diametrobarreno2 * 3.1416)) + (cantidadbarreno3 * (diametrobarreno3 * 3.1416))* preciocorteplasma;
+        } else if (espesorpieza <= 0.75) {
+          preciobarrenadounitario = cantidadbarrenos * 20;
+        } else if (espesorpieza > 0.75) {
+          preciobarrenadounitario =
+            cantidadbarrenos * ((tiempobarrenado * 720) / 60);
+        }
 
-        var perimetrobarreno1 = diametrobarreno1 * 3.1416 * cantidadbarreno1;
-        var perimetrobarreno2 = diametrobarreno2 * 3.1416 * cantidadbarreno2;
-        var perimetrobarreno3 = diametrobarreno3 * 3.1416 * cantidadbarreno3;
-        var perimetrobarrenototal =
-          perimetrobarreno1 + perimetrobarreno2 + perimetrobarreno3;
+        var perimetrototalpieza = (diametropiezaexterno * 3.1416) + (diametropiezainterno * 3.1416)
+        var preciocorte = (perimetrototalpieza * preciocorteplasma) * detallado;
+
+        var preciobarreno1 = diametrobarreno1 * 3.1416
+
 
         document.getElementById("resultado").innerText =
           resultado.toFixed(2) + " MXN";
