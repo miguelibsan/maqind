@@ -89,9 +89,8 @@
       }
 
       .hidden {
-            display: none;
-        }
-
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -123,8 +122,11 @@
         />
       </div>
       <h2>COTIZACIÓN MAQUINADO</h2>
-      <H3>EN EL CASO DE HABER BARRENOS CON DIMENSIONES DIFERENTES, INGRESA LOS DATOS DE CADA TIPO DE BARRENO</H3>
-      <BR>
+      <h3>
+        EN EL CASO DE HABER BARRENOS CON DIMENSIONES DIFERENTES, INGRESA LOS
+        DATOS DE CADA TIPO DE BARRENO
+      </h3>
+      <br />
       <div class="input-group">
         <label for="perimetropieza">DIAMETRO DE BARRENO:</label>
         <input
@@ -185,18 +187,35 @@
       <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
     </div>
 
-
     <script>
       function calcularPrecio() {
-        var espesorpieza = parseFloat(document.getElementById("espesorpieza").value);
-        var diametropiezaexterno = parseFloat(document.getElementById("diametropiezaexterno").value);
-        var diametropiezainterno = parseFloat(document.getElementById("diametropiezainterno").value);
-        var diametrobarreno1 = parseFloat(document.getElementById("diametrobarreno1").value);
-        var diametrobarreno2 = parseFloat(document.getElementById("diametrobarreno2").value);
-        var diametrobarreno3 = parseFloat(document.getElementById("diametrobarreno3").value);
-        var cantidadbarreno1 = parseFloat(document.getElementById("cantidadbarreno1").value);
-        var cantidadbarreno2 = parseFloat(document.getElementById("cantidadbarreno2").value);
-        var cantidadbarreno3 = parseFloat(document.getElementById("cantidadbarreno3").value);
+        var espesorpieza = parseFloat(
+          document.getElementById("espesorpieza").value
+        );
+        var diametropiezaexterno = parseFloat(
+          document.getElementById("diametropiezaexterno").value
+        );
+        var diametropiezainterno = parseFloat(
+          document.getElementById("diametropiezainterno").value
+        );
+        var diametrobarreno1 = parseFloat(
+          document.getElementById("diametrobarreno1").value
+        );
+        var diametrobarreno2 = parseFloat(
+          document.getElementById("diametrobarreno2").value
+        );
+        var diametrobarreno3 = parseFloat(
+          document.getElementById("diametrobarreno3").value
+        );
+        var cantidadbarreno1 = parseFloat(
+          document.getElementById("cantidadbarreno1").value
+        );
+        var cantidadbarreno2 = parseFloat(
+          document.getElementById("cantidadbarreno2").value
+        );
+        var cantidadbarreno3 = parseFloat(
+          document.getElementById("cantidadbarreno3").value
+        );
 
         var preciocorteplasma = 0;
         var detallado = 1.1;
@@ -221,14 +240,14 @@
         var perimetropiezainterno = diametropiezainterno * 3.1416;
         var perimetropiezatotal = perimetropiezaexterno + perimetropiezainterno;
 
-        var perimetrobarreno1 = (diametrobarreno1 * 3.1416) * cantidadbarreno1;
-        var perimetrobarreno2 = (diametrobarreno2 * 3.1416) * cantidadbarreno2;
-        var perimetrobarreno3 = (diametrobarreno3 * 3.1416) * cantidadbarreno3;
-        var perimetrobarrenototal = perimetrobarreno1 + perimetrobarreno2 + perimetrobarreno3;
+        var perimetrobarreno1 = diametrobarreno1 * 3.1416 * cantidadbarreno1;
+        var perimetrobarreno2 = diametrobarreno2 * 3.1416 * cantidadbarreno2;
+        var perimetrobarreno3 = diametrobarreno3 * 3.1416 * cantidadbarreno3;
+        var perimetrobarrenototal =
+          perimetrobarreno1 + perimetrobarreno2 + perimetrobarreno3;
 
-
-
-        document.getElementById("resultado").innerText = resultado.toFixed(2) + " MXN";
+        document.getElementById("resultado").innerText =
+          resultado.toFixed(2) + " MXN";
       }
     </script>
   </body>

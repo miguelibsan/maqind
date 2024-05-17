@@ -95,10 +95,10 @@
       <h1>VANG</h1>
       <h2>COTIZACIÓN CORTE</h2>
       <div class="input-group">
-        <label for="espesorcorte">ESPESOR DE LA PLACA:</label>
+        <label for="espesorcorte">ESPESOR DE LA PIEZA:</label>
         <input
           type="number"
-          id="espesorcorte"
+          id="espesorpieza"
           placeholder="Ingresa el dato en decimales"
         />
       </div>
@@ -118,18 +118,26 @@
           placeholder="Ingresa el dato en decimales"
         />
       </div>
-      <h2>COTIZACIÓN MAQUINADO (OPCIONAL)</h2>
+      <h2>COTIZACIÓN MAQUINADO</h2>
       <div class="input-group">
-        <label for="diametro">CANTIDAD DE BARRENOS:</label>
+        <label for="diametro">CANTIDAD DE BARRENOS: (OPCIONAL)</label>
         <input
           type="number"
           id="cantidadbarrenos"
           placeholder="Ingresa el dato en decimales"
           value="0"
         />
+        <div class="input-group">
+          <label for="diametro">DIAMETRO DE BARRENOS: (OPCIONAL)</label>
+          <input
+            type="number"
+            id="diametrobarrenos"
+            placeholder="Ingresa el dato en decimales"
+            value="0"
+          />
       </div>
       <div class="input-group">
-        <label for="diametro">CANTIDAD DE BISELES:</label>
+        <label for="diametro">CANTIDAD DE BISELES: (OPCIONAL)</label>
         <input
           type="number"
           id="cantidadbisel"
@@ -138,7 +146,7 @@
         />
       </div>
       <div class="input-group">
-        <label for="diametro">CANTIDAD DE CHAFLANES:</label>
+        <label for="diametro">CANTIDAD DE CHAFLANES: (OPCIONAL)</label>
         <input
           type="number"
           id="cantidadchaflan"
@@ -156,13 +164,14 @@
       function calcularPrecio() {
         var largo = parseFloat(document.getElementById("largo").value) || 0;
         var ancho = parseFloat(document.getElementById("ancho").value) || 0;
-        var espesorcorte =
-          parseFloat(document.getElementById("espesorcorte").value) || 0;
+        var espesorpieza =
+          parseFloat(document.getElementById("espesorpieza").value) || 0;
         var cantidadbisel = parseFloat(
           document.getElementById("cantidadbisel").value
         );
         var cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value);
-        var cantidadchaflan = parseFloat(document.getElementById("cantidadchaflan").value);
+        var diametrobarrenos = parseFloat(document.getElementById("diametrobarrenos").value);
+        var cantidadchaflanes = parseFloat(document.getElementById("cantidadchaflanes").value);
 
         var detallado = 1.1;
         var gn = 1.15;
@@ -170,45 +179,47 @@
         var preciomaquinado = 0;
         var preciocorte = 0;
         var precioprocesos = 0;
-
-
-        // PRECIO PULGADA CORTE
-        if (espesorcorte <= 0.5) {
-          preciopulgadacorte = 1.5;
-        } else if (espesorcorte >= 0.625 && espesorcorte <= 1.0) {
-          preciopulgadacorte = 3.5;
-        } else if (espesorcorte >= 1.125 && espesorcorte <= 1.5) {
-          preciopulgadacorte = 5.5;
-        } else if (espesorcorte >= 1.625 && espesorcorte <= 2.0) {
-          preciopulgadacorte = 9.0;
-        } else if (espesorcorte >= 2.125 && espesorcorte <= 2.5) {
-          preciopulgadacorte = 14.0;
-        } else if (espesorcorte >= 2.625 && espesorcorte <= 3.0) {
-          preciopulgadacorte = 17.0;
-        }
-
-        var perimetrocorte = largo * 2 + ancho * 2;
-        var preciocorte = perimetrocorte * preciopulgadacorte;
-        var preciofinalcorte = preciocorte * detallado;
-        var tiempobarrenado = (espesorcorte * 25) / 4.5; // valores acordados con Luis de Maquinados, 4.5 in de espesor se tarda 25 minutos
+        var preciocorteplasma = 0;
+        var preciobarrenado = 0;
+        var preciobarrenadounitario = 0; 
         var preciochaflan = 0;
-        
-        if (espesorcorte <= 0.75) {
-          preciobarrenado = cantidadbarrenos * 20;
-        } else {
-          preciobarrenado = cantidadbarrenos * ((tiempobarrenado * 780) / 60);
-        }
-        
-        var preciobarrenadounitario = ((tiempobarrenado * 780) / 60);
 
-        if (espesorcorte <= 0.75) {
-          preciochaflan = cantidadchaflan * 10;
-        } else {
-          preciochaflan = cantidadchaflan * (preciobarrenadounitario / 2);
+
+        // TABLA PRECIO CORTE PLASMA
+        if (espesorpieza <= 0.5) {
+          preciocorteplasma = 1.5;
+        } else if (espesorpieza >= 0.625 && espesorpieza <= 1.0) {
+          preciocorteplasma = 3.5;
+        } else if (espesorpieza >= 1.125 && espesorpieza <= 1.5) {
+          preciocorteplasma = 5.5;
+        } else if (espesorpieza >= 1.625 && espesorpieza <= 2.0) {
+          preciocorteplasma = 9.0;
+        } else if (espesorpieza >= 2.125 && espesorpieza <= 2.5) {
+          preciocorteplasma = 14.0;
+        } else if (espesorpieza >= 2.625 && espesorpieza <= 3.0) {
+          preciocorteplasma = 17.0;
+        }
+
+        var perimetropieza = largo * 2 + ancho * 2;
+        var preciocorte = perimetropieza * preciocorteplasma;
+        var preciofinalcorte = preciocorte * detallado;
+
+        var tiempobarrenado = (espesorpieza * 25) / 4.5; // valores acordados con Luis de Maquinados, 4.5 in de espesor se tarda 25 minutos
+
+        // TABLA PRECIO BARRENOS
+        if (espesorpieza <= 0.25) {
+          preciobarrenadounitario = cantidadbarrenos * (diametrobarreno * 3.1416) * preciocorteplasma;
+          preciochaflan = cantidadchaflanes * 10;
+        } else if (espesorpieza <= 0.75) {
+          preciobarrenadounitario = cantidadbarrenos * 20;
+          preciochaflan = cantidadchaflanes * 10;
+        }  else if (espesorpieza > 0.75) {
+          preciobarrenadounitario = cantidadbarrenos * ((tiempobarrenado * 780) / 60);
+          preciochaflan = cantidadchaflanes * (preciobarrenadounitario / 2);
         }
 
         var preciobisel = largo * 10 * cantidadbisel;
-        var preciomaquinado = (preciobarrenado * cantidadbarrenos) + preciobisel + preciochaflan;
+        var preciomaquinado = preciobarrenadounitario  + preciobisel + preciochaflan;
         var precioprocesos = preciofinalcorte + preciomaquinado;
         var total = precioprocesos * gn;
         document.getElementById("resultado").innerText =
