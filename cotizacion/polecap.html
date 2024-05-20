@@ -23,9 +23,12 @@
         display: flex; /* Utiliza Flexbox para alinear elementos */
         justify-content: center; /* Centra contenido horizontalmente */
         align-items: center; /* Centra contenido verticalmente */
+        flex-direction: column; /* Alinea los contenedores en columna */
         height: 100vh; /* Altura completa de la ventana del navegador */
         margin: 0; /* Elimina márgenes predeterminados */
         font-family: "Roboto", sans-serif; /* Define la familia de fuentes */
+        padding-top: 250px;
+        padding-bottom: 250px;
       }
       .container {
         width: 80%; /* Ancho del contenedor al 80% del espacio disponible */
@@ -37,8 +40,8 @@
         border-radius: 10px; /* Bordes redondeados */
         display: flex; /* Utiliza Flexbox para alinear elementos internos */
         flex-direction: column; /* Orientación de elementos en columna */
-
       }
+
       h1 {
         font-size: 42px; /* Tamaño de fuente de 42px */
         font-weight: bold; /* Negrita */
@@ -132,6 +135,12 @@
       <div class="output" id="resultado">0 MXN</div>
       <button onclick="calcularPrecio()">Calcular</button>
       <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
+    </div>
+
+    <div class="container">
+      <h1>GUÍA VISUAL</h1>
+      <img src="fotos/polecap.jpg" alt="" style="width:100%" />
+
     </div>
 
     <script>
