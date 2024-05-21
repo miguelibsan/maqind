@@ -1,200 +1,217 @@
 <!DOCTYPE html>
-<!-- Define que el documento es HTML5 -->
 <html lang="es">
-<!-- Establece el idioma del documento en español -->
-
   <head>
-    <!-- Contiene metadatos/información para el documento -->
     <meta charset="UTF-8" />
-    <!-- Especifica la codificación de caracteres UTF-8 para el contenido del documento -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Asegura que el sitio es adaptable a diferentes tamaños de pantalla (responsive) -->
     <title>Precio Pole Cap</title>
-    <!-- Define el título del documento que aparece en la pestaña del navegador -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Importa las fuentes de Google, especificamente 'Roboto' con los grosores 400 y 700 -->
     <style>
-      /* Estilos CSS internos */
       body {
-        background-color: #3c3c3c; /* Color de fondo del cuerpo de la página */
-        display: flex; /* Utiliza Flexbox para alinear elementos */
-        justify-content: center; /* Centra contenido horizontalmente */
-        align-items: center; /* Centra contenido verticalmente */
-        flex-direction: column; /* Alinea los contenedores en columna */
-        height: 100vh; /* Altura completa de la ventana del navegador */
-        margin: 0; /* Elimina márgenes predeterminados */
-        font-family: "Roboto", sans-serif; /* Define la familia de fuentes */
-        padding-top: 250px;
-        padding-bottom: 250px;
+        background-color: #3c3c3c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        font-family: "Roboto", sans-serif;
       }
       .container {
-        width: 80%; /* Ancho del contenedor al 80% del espacio disponible */
-        max-width: 600px; /* Ancho máximo de 600px */
-        margin-top: 20px; /* Margen superior de 20px */
-        background-color: white; /* Color de fondo blanco */
-        padding: 20px; /* Relleno de 20px en todos los lados */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra de caja */
-        border-radius: 10px; /* Bordes redondeados */
-        display: flex; /* Utiliza Flexbox para alinear elementos internos */
-        flex-direction: column; /* Orientación de elementos en columna */
+        width: 80%;
+        max-width: 600px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
       }
-
       h1 {
-        font-size: 42px; /* Tamaño de fuente de 42px */
-        font-weight: bold; /* Negrita */
-        text-align: center; /* Texto centrado */
+        font-size: 42px;
+        font-weight: bold;
+        text-align: center;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: left;
+        margin-bottom: 10px;
       }
       .input-group {
-        width: 100%; /* Ancho al 100% del contenedor */
-        margin-bottom: 10px; /* Margen inferior de 10px */
+        width: 100%;
+        margin-bottom: 10px;
       }
       label {
-        font-size: 18px; /* Tamaño de fuente de 18px */
-        font-weight: normal; /* Peso de la fuente normal */
-        margin-bottom: 5px; /* Margen inferior de 5px */
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 5px;
+        display: block;
       }
       input,
       select,
       button {
-        width: 100%; /* Ancho al 100% de su contenedor */
-        padding: 10px; /* Relleno de 10px */
-        margin-top: 2px; /* Margen superior de 2px */
-        border-radius: 5px; /* Bordes redondeados */
-        border: 1px solid #ccc; /* Borde sólido de 1px */
-        box-sizing: border-box; /* El ancho y alto incluyen el relleno y el borde */
-        background-color: white; /* Color de fondo blanco */
+        width: 100%;
+        padding: 10px;
+        margin-top: 2px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: white;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       .output {
-        font-size: 24px; /* Tamaño de fuente de 24px */
-        margin-top: 20px; /* Margen superior de 20px */
-        color: #333; /* Color de texto gris oscuro */
-        font-weight: bold; /* Negrita */
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        font-weight: bold;
       }
       button {
-        background-color: #4caf50; /* Color de fondo verde */
-        color: white; /* Color de texto blanco */
-        border: none; /* más estilos para botón */
-        cursor: pointer; /* Cambia el cursor a un puntero */
-        margin-top: 10px; /* Margen superior de 10px */
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
       }
       button:hover {
-        background-color: #45a049; /* Cambia el color de fondo al pasar el mouse */
+        background-color: #45a049;
+      }
+      .hidden {
+        display: none;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>POLE CAP</h1>
+      <div align="center">
+        <img src="fotos/polecap.jpg" alt="Imagen" style="width: 100%">
+    </div>
+      <h2>COTIZACIÓN CORTE</h2>
       <div class="input-group">
-        <label for="diametro">DIAMETRO DE LA PIEZA:</label>
+        <label for="espesorpieza">ESPESOR DE LA PIEZA:</label>
         <input
           type="number"
-          id="diametro"
-          placeholder="Ingresa el dato en decimales"
+          id="espesorpieza"
+          placeholder="Dato de pulgadas en decimales"
         />
       </div>
       <div class="input-group">
-        <label for="espesor">ESPESOR DE LA PLACA:</label>
+        <label for="diametroexteriorpieza">DIAMETRO DE LA PIEZA:</label>
         <input
           type="number"
-          id="espesorplaca"
-          placeholder="Ingresa el dato en decimales"
+          id="diametropieza"
+          placeholder="Dato de pulgadas en decimales"
         />
       </div>
+      <h2>COTIZACIÓN MAQUINADO</h2>
       <div class="input-group">
-        <label for="cantidad">CANTIDAD DE BARRENOS (OPCIONAL):</label>
+        <label for="cantidadbarrenos">CANTIDAD DE BARRENOS: (OPCIONAL)</label>
         <input
           type="number"
-          id="cantidadbarreno"
-          placeholder="Cantidad en unidades"
-          value="0"
-        />
-      </div>
-      <div class="input-group">
-        <label for="espesorBarreno">DIAMETRO DEL BARRENO (OPCIONAL):</label>
-        <input
-          type="number"
-          id="diametrobarreno"
+          id="cantidadbarrenos"
           placeholder="Ingresa el dato en decimales"
           value="0"
         />
       </div>
       <div class="input-group">
-        <label for="quintado">QUINTADO (OPCIONAL):</label>
-        <br />
-        <select id="quintado">
-          <option value="no">No</option>
-          <option value="si">Sí</option>
-        </select>
+        <label for="diametrobarrenos">DIAMETRO DE BARRENOS: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="diametrobarrenos"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
       </div>
-
+      <div class="input-group">
+        <label for="cantidadbarrenos2">CANTIDAD DE BARRENOS: (DIFERENTES MEDIDAS)</label>
+        <input
+          type="number"
+          id="cantidadbarrenos2"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="diametrobarrenos2">DIAMETRO DE BARRENOS: (DIFERENTES MEDIDAS)</label>
+        <input
+          type="number"
+          id="diametrobarrenos2"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <h2>COTIZACIÓN CHAFLÁN</h2>
+      <div class="input-group">
+        <label for="cantidadchaflan">CANTIDAD DE CHAFLAN: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadchaflan"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
       <div class="output" id="resultado">0 MXN</div>
       <button onclick="calcularPrecio()">Calcular</button>
       <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
     </div>
-
-    <div class="container">
-      <h1>GUÍA VISUAL</h1>
-      <img src="fotos/polecap.jpg" alt="" style="width:100%" />
-
-    </div>
-
     <script>
       function calcularPrecio() {
-        // Inputs from the HTML
-        var diametro = parseFloat(document.getElementById("diametro").value);
-        var espesor = parseFloat(document.getElementById("espesorplaca").value);
-        var cantidadbarreno = parseInt(
-          document.getElementById("cantidadbarreno").value
-        );
-        var diametrobarreno = parseFloat(
-          document.getElementById("diametrobarreno").value
-        );
-        var quintadoSeleccionado = document.getElementById("quintado").value;
+        const espesorpieza = parseFloat(document.getElementById("espesorpieza").value) || 0;
+        const diametropieza = parseFloat(document.getElementById("diametropieza").value) || 0;
+        const cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value) || 0;
+        const diametrobarrenos = parseFloat(document.getElementById("diametrobarrenos").value) || 0;
+        const cantidadbarrenos2 = parseFloat(document.getElementById("cantidadbarrenos2").value) || 0;
+        const diametrobarrenos2 = parseFloat(document.getElementById("diametrobarrenos2").value) || 0;
+        const cantidadchaflan = parseFloat(document.getElementById("cantidadchaflan").value) || 0;
 
-        // Constants
-        var PI = 3.1416;
+        var preciocorteplasma = 0;
         var detallado = 1.1;
-        var ganancia = 1.16;
-        var preciobarreno = cantidadbarreno * (diametrobarreno * PI);
-        var quintado = 56;
-
-        // Calculate the base result using the diameter
-        var resultadoplaca = diametro * PI;
-
-        // Initialize the price of the plate
-        var precioplaca = 0;
-
-        // Calculate price based on thickness range
-        if (espesor <= 0.5) {
-          precioplaca = resultadoplaca * 1.5;
-        } else if (espesor >= 0.625 && espesor <= 1.0) {
-          precioplaca = resultadoplaca * 3.5;
-        } else if (espesor >= 1.125 && espesor <= 1.5) {
-          precioplaca = resultadoplaca * 5.5;
-        } else if (espesor >= 1.625 && espesor <= 2.0) {
-          precioplaca = resultadoplaca * 9.0;
-        } else if (espesor >= 2.125 && espesor <= 2.5) {
-          precioplaca = resultadoplaca * 14.0;
-        } else if (espesor >= 2.625 && espesor <= 3.0) {
-          precioplaca = resultadoplaca * 17.0;
+        var gn = 1.15;
+        var preciocorte = 0;
+        var preciobarrenado = 0;
+        var preciochaflan = 0;
+        
+        // TABLA PRECIO CORTE PLASMA
+        if (espesorpieza <= 0.5) {
+          preciocorteplasma = 1.5;
+        } else if (espesorpieza <= 1.0) {
+          preciocorteplasma = 3.5;
+        } else if (espesorpieza <= 1.5) {
+          preciocorteplasma = 5.5;
+        } else if (espesorpieza <= 2.0) {
+          preciocorteplasma = 9.0;
+        } else if (espesorpieza <= 2.5) {
+          preciocorteplasma = 14.0;
+        } else if (espesorpieza <= 3.0) {
+          preciocorteplasma = 17.0;
         }
 
-        // Calculate the final price with detailed markup and profit
-        var precioFinal = (precioplaca + preciobarreno) * detallado * ganancia;
+        var perimetropieza = (diametropieza * 3.1416);
 
-        // Add quintado if selected
-        if (quintadoSeleccionado === "si") {
-          precioFinal += quintado;
+        // TABLA ESPESOR
+        if (espesorpieza <= 0.25) {
+          preciocorte = (perimetropieza + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
+          preciobarrenado = 0
+          preciochaflan = cantidadchaflan * 10;
+        } else if (espesorpieza <= 0.75) {
+          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciobarrenado = (cantidadbarrenos + cantidadbarrenos2) * 20;
+          preciochaflan = cantidadchaflan * 10;
+        } else if (espesorpieza > 0.75) {
+          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciobarrenado = ((((espesorpieza * 25) / 4.5) * 720) / 60) * (cantidadbarrenos + cantidadbarrenos2);
+          preciochaflan = (((((espesorpieza * 25) / 4.5) * 720) / 60)) / 2 * cantidadchaflan;
         }
 
-        // Display the result in MXN format
+        var resultado = (preciocorte + preciobarrenado + preciochaflan) * gn;
+
         document.getElementById("resultado").innerText =
-          precioFinal.toFixed(2) + " MXN";
+          resultado.toFixed(2) + " MXN";
       }
     </script>
   </body>
