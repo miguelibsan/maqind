@@ -109,7 +109,7 @@
         />
       </div>
       <div class="input-group">
-        <label for="largo">LARGO INTERIO DE LA PIEZA:</label>
+        <label for="largo">LARGO INTERIOR DE LA PIEZA:</label>
         <input
           type="number"
           id="largo"
@@ -209,7 +209,7 @@
           preciocorteplasma = 17.0;
         }
 
-        var perimetropieza = (2 * (largo + ancho)) + (diametroexteriorpieza * 3.1416);
+        var perimetropieza = (Math.sqrt(Math.pow(alto, 2) + Math.pow(ancho, 2)) * 4) + (diametroexteriorpieza * 3.1416);
 
         // TABLA ESPESOR
         if (espesorpieza <= 0.25) {
