@@ -12,15 +12,14 @@
       body {
         background-color: #3c3c3c;
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
         min-height: 100vh;
         margin: 0;
         padding-top: 100px;
         padding-bottom: 100px;
         font-family: "Roboto", sans-serif;
       }
-
       .container {
         width: 80%;
         max-width: 600px;
@@ -30,31 +29,29 @@
         border-radius: 10px;
         display: flex;
         flex-direction: column;
+        margin-bottom: 20px;
       }
-
       h1 {
         font-size: 42px;
         font-weight: bold;
         text-align: center;
       }
-
       h2 {
-        font-size: 28px;
+        font-size: 18px;
         font-weight: bold;
-        margin-top: 20px;
+        text-align: left;
+        margin-bottom: 10px;
       }
-
       .input-group {
         width: 100%;
         margin-bottom: 10px;
       }
-
       label {
         font-size: 18px;
+        font-weight: normal;
         margin-bottom: 5px;
         display: block;
       }
-
       input,
       select,
       button {
@@ -67,43 +64,44 @@
         background-color: white;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
-
       .output {
         font-size: 24px;
         margin-top: 20px;
         color: #333;
         font-weight: bold;
-        text-align: center;
       }
-
       button {
         background-color: #4caf50;
         color: white;
         border: none;
         cursor: pointer;
         margin-top: 10px;
-        padding: 10px;
       }
-
       button:hover {
         background-color: #45a049;
+      }
+      .hidden {
+        display: none;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>VANG</h1>
+      <div align="center">
+        <img src="fotos/vang.jpg" alt="Imagen" style="width: 100%">
+    </div>
       <h2>COTIZACIÓN CORTE</h2>
       <div class="input-group">
-        <label for="espesorcorte">ESPESOR DE LA PIEZA:</label>
+        <label for="espesorpieza">ESPESOR DE LA PIEZA:</label>
         <input
           type="number"
           id="espesorpieza"
-          placeholder="Ingresa el dato en decimales"
+          placeholder="Dato de pulgadas en decimales"
         />
       </div>
       <div class="input-group">
-        <label for="diametrocorte">LARGO DE LA PIEZA:</label>
+        <label for="largo">LARGO DE LA PIEZA:</label>
         <input
           type="number"
           id="largo"
@@ -111,7 +109,7 @@
         />
       </div>
       <div class="input-group">
-        <label for="diametrocorte">ANCHO DE LA PIEZA:</label>
+        <label for="ancho">ANCHO DE LA PIEZA:</label>
         <input
           type="number"
           id="ancho"
@@ -120,36 +118,57 @@
       </div>
       <h2>COTIZACIÓN MAQUINADO</h2>
       <div class="input-group">
-        <label for="diametro">CANTIDAD DE BARRENOS: (OPCIONAL)</label>
+        <label for="cantidadbarrenos">CANTIDAD DE BARRENOS: (OPCIONAL)</label>
         <input
           type="number"
           id="cantidadbarrenos"
           placeholder="Ingresa el dato en decimales"
           value="0"
         />
-        <div class="input-group">
-          <label for="diametro">DIAMETRO DE BARRENOS: (OPCIONAL)</label>
-          <input
-            type="number"
-            id="diametrobarrenos"
-            placeholder="Ingresa el dato en decimales"
-            value="0"
-          />
       </div>
       <div class="input-group">
-        <label for="diametro">CANTIDAD DE BISELES: (OPCIONAL)</label>
+        <label for="diametrobarrenos">DIAMETRO DE BARRENOS: (OPCIONAL)</label>
         <input
           type="number"
-          id="cantidadbisel"
+          id="diametrobarrenos"
           placeholder="Ingresa el dato en decimales"
           value="0"
         />
       </div>
       <div class="input-group">
-        <label for="diametro">CANTIDAD DE CHAFLANES: (SI ES POR AMBOS LADOS CUENTA COMO 2)</label>
+        <label for="cantidadbarrenos2">CANTIDAD DE BARRENOS: (DIFERENTES MEDIDAS)</label>
         <input
           type="number"
-          id="cantidadchaflanes"
+          id="cantidadbarrenos2"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="diametrobarrenos2">DIAMETRO DE BARRENOS: (DIFERENTES MEDIDAS)</label>
+        <input
+          type="number"
+          id="diametrobarrenos2"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <h2>COTIZACIÓN CHAFLÁN</h2>
+      <div class="input-group">
+        <label for="cantidadchaflan">CANTIDAD DE CHAFLAN: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadchaflan"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <h2>COTIZACIÓN BISEL</h2>
+      <div class="input-group">
+        <label for="cantidadbisel">CANTIDAD DE BISELES: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadbisel"
           placeholder="Ingresa el dato en decimales"
           value="0"
         />
@@ -162,21 +181,24 @@
 
     <script>
       function calcularPrecio() {
-        var largo = parseFloat(document.getElementById("largo").value) || 0;
-        var ancho = parseFloat(document.getElementById("ancho").value) || 0;
-        var espesorpieza = parseFloat(document.getElementById("espesorpieza").value) || 0;
-        var cantidadbisel = parseFloat(document.getElementById("cantidadbisel").value) || 0;
-        var cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value) || 0;
-        var diametrobarrenos = parseFloat(document.getElementById("diametrobarrenos").value) || 0;
-        var cantidadchaflanes = parseFloat(document.getElementById("cantidadchaflanes").value) || 0;
+        const espesorpieza = parseFloat(document.getElementById("espesorpieza").value) || 0;
+        const largo = parseFloat(document.getElementById("largo").value) || 0;
+        const ancho = parseFloat(document.getElementById("ancho").value) || 0;
+        const cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value) || 0;
+        const diametrobarrenos = parseFloat(document.getElementById("diametrobarrenos").value) || 0;
+        const cantidadbarrenos2 = parseFloat(document.getElementById("cantidadbarrenos2").value) || 0;
+        const diametrobarrenos2 = parseFloat(document.getElementById("diametrobarrenos2").value) || 0;
+        const cantidadchaflan = parseFloat(document.getElementById("cantidadchaflan").value) || 0;
+        const cantidadbisel = parseFloat(document.getElementById("cantidadbisel").value) || 0;
 
+        var preciocorteplasma = 0;
         var detallado = 1.1;
         var gn = 1.15;
-        var preciocorteplasma = 0;
-        var preciobarrenadounitario = 0; 
+        var preciocorte = 0;
+        var preciobarrenado = 0;
         var preciochaflan = 0;
-
-
+        var preciobisel = 0;
+        
         // TABLA PRECIO CORTE PLASMA
         if (espesorpieza <= 0.5) {
           preciocorteplasma = 1.5;
@@ -192,35 +214,32 @@
           preciocorteplasma = 17.0;
         }
 
-        var perimetropieza = (largo + ancho) * 2;
-        var preciocorte = perimetropieza * preciocorteplasma;
-        var preciofinalcorte = preciocorte * detallado;
+        var perimetropieza = 2 * (largo + ancho);
 
-        var tiempobarrenado = (espesorpieza * 25) / 4.5; // valores acordados con Luis de Maquinados, 4.5 in de espesor se tarda 25 minutos
-
-
-        // TABLA PRECIO BARRENOS
+        // TABLA ESPESOR
         if (espesorpieza <= 0.25) {
-          preciobarrenadounitario = cantidadbarrenos * (diametrobarrenos * 3.1416) * preciocorteplasma;
+          preciocorte = (perimetropieza + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
+          preciobarrenado = 0
+          preciochaflan = cantidadchaflan * 10;
+          preciobisel = cantidadbisel * 10;
         } else if (espesorpieza <= 0.75) {
-          preciobarrenadounitario = cantidadbarrenos * 20;
+          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciobarrenado = (cantidadbarrenos + cantidadbarrenos2) * 20;
+          preciochaflan = cantidadchaflan * 10;
+          preciobisel = cantidadbisel * 10;
         } else if (espesorpieza > 0.75) {
-          preciobarrenadounitario = cantidadbarrenos * ((tiempobarrenado * 720) / 60);
+          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciobarrenado = ((((espesorpieza * 25) / 4.5) * 720) / 60) * (cantidadbarrenos + cantidadbarrenos2);
+          preciochaflan = (((((espesorpieza * 25) / 4.5) * 720) / 60)) / 2 * cantidadchaflan;
+          preciobisel = cantidadbisel * 10;
         }
 
-        // TABLA PRECIO CHAFLANES
-        if (espesorpieza <= 0.75) {
-          preciochaflan = cantidadchaflanes * 10;
-        } else {
-          preciochaflan = cantidadchaflanes * (preciobarrenadounitario / 2);
-        }
+        var resultado = (preciocorte + preciobarrenado + preciochaflan + preciobisel) * gn;
 
-        var preciobisel = largo * 10 * cantidadbisel;
-        var preciomaquinado = preciobarrenadounitario + preciobisel + preciochaflan;
-        var precioprocesos = preciofinalcorte + preciomaquinado;
-        var total = precioprocesos * gn;
-        document.getElementById("resultado").innerText = total.toFixed(2) + " MXN";
+        document.getElementById("resultado").innerText =
+          resultado.toFixed(2) + " MXN";
       }
     </script>
+
   </body>
 </html>
