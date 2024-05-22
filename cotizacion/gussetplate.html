@@ -225,8 +225,8 @@
           preciocorteplasma = 17.0;
         }
 
-        const hipotenusa = Math.sqrt(Math.pow(ancho, 2) + Math.pow(alto, 2));
-        var perimetropieza = ancho + alto + hipotenusa;
+        const hipotenusa = Math.sqrt(Math.pow(ancho, 2) + Math.pow(largo, 2));
+        var perimetropieza = ancho + largo + hipotenusa;
 
         // TABLA ESPESOR
         if (espesorpieza <= 0.25) {
@@ -246,7 +246,7 @@
           preciobisel = cantidadbisel * 10;
         }
 
-        var resultado = (preciocorte + preciobarrenado + preciochaflan + precioquintado) * gn;
+        var resultado = (preciocorte + preciobarrenado + preciochaflan + precioquintado + preciobisel) * gn;
 
         document.getElementById("resultado").innerText =
           resultado.toFixed(2) + " MXN";
