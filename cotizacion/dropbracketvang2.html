@@ -173,6 +173,15 @@
           value="0"
         />
       </div>
+      <div class="input-group">
+        <label for="largobisel">LARGO DEL BISEL: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="largobisel"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
       <h2>COTIZACIÓN QUINTADO</h2>
       <div class="input-group">
         <label for="cantidadquintado">CANTIDAD DE LETRAS: (OPCIONAL)</label>
@@ -199,6 +208,7 @@
         const diametrobarrenos2 = parseFloat(document.getElementById("diametrobarrenos2").value) || 0;
         const cantidadchaflan = parseFloat(document.getElementById("cantidadchaflan").value) || 0;
         const cantidadbisel = parseFloat(document.getElementById("cantidadbisel").value) || 0;
+        const largobisel = parseFloat(document.getElementById("largobisel").value) || 0;
         const cantidadquintado = parseFloat(document.getElementById("cantidadquintado").value) || 0;
 
         var preciocorteplasma = 0;
@@ -232,17 +242,17 @@
           preciocorte = (perimetropieza + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
           preciobarrenado = 0
           preciochaflan = cantidadchaflan * 10;
-          preciobisel = cantidadbisel * 10;
+          preciobisel = largobisel * cantidadbisel * 10;
         } else if (espesorpieza <= 0.75) {
           preciocorte = perimetropieza * preciocorteplasma * detallado;
           preciobarrenado = (cantidadbarrenos + cantidadbarrenos2) * 20;
           preciochaflan = cantidadchaflan * 10;
-          preciobisel = cantidadbisel * 10;
+          preciobisel = largobisel * cantidadbisel * 10;
         } else if (espesorpieza > 0.75) {
           preciocorte = perimetropieza * preciocorteplasma * detallado;
           preciobarrenado = ((((espesorpieza * 25) / 4.5) * 720) / 60) * (cantidadbarrenos + cantidadbarrenos2);
           preciochaflan = (((((espesorpieza * 25) / 4.5) * 720) / 60)) / 2 * cantidadchaflan;
-          preciobisel = cantidadbisel * 10;
+          preciobisel = largobisel * cantidadbisel * 10;
         }
 
         var resultado = (preciocorte + preciobarrenado + preciochaflan + preciobisel + precioquintado) * gn;
