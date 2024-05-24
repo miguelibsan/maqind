@@ -52,32 +52,26 @@
       }
 
       h1 {
-        font-size: 42px; /* Tamaño más grande para encabezados */
-        font-weight: bold; /* Texto más grueso para destacar */
+        font-size: 42px; 
+        font-weight: bold; 
       }
 
       h2 {
-        font-size: 18px; /* Tamaño más grande para encabezados */
-        font-weight: normal; /* Texto más grueso para destacar */
-        max-width: 300px; /* Máximo ancho que el título puede alcanzar */
-
+        font-size: 18px; 
+        font-weight: normal; 
+        max-width: 300px; 
         text-align: center;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <!-- Contenedor principal para elementos centrados -->
       <h1>COTIZACIÓN</h1>
-      <!-- Título principal -->
       <img src="fotos/arcosalogo.png" alt="Logo Empresa" />
-      <!-- Imagen del logo de la empresa -->
       <h2>SELECCIONA EL DISEÑO QUE QUIERES COTIZAR</h2>
-      <!-- Subtítulo para instrucciones -->
       <br />
-      <!-- Espacio entre elementos -->
       <select id="options" onchange="navigate()">
-        <option value="">DA CLICK</option>
+        <option value="">DA CLICK AQUI PARA MOSTRAR LA LISTA</option>
         <option value="2holegroundtab.html">2 Hole Ground Tab</option>
         <option value="armbracket.html">Arm Bracket</option>
         <option value="armbracketgusset.html">Arm Bracket Gusset</option>
@@ -102,11 +96,6 @@
         <option value="throughvang.html">Through Vang</option>
         <option value="vd2doublerweathering.html">VD2 Doubler Weathering</option>
         <option value="vang.html">Vang</option>
-        <option
-          value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNAaQvv7Uvd-Z7U5FJ-XN4fi8AovjYyt3wk1F49yXdw&s"
-        >
-          En proceso
-        </option>
       </select>
       <br>
       <br>
@@ -114,11 +103,9 @@
     </div>
     <script>
       function navigate() {
-        // Función para manejar la navegación
-        const url = document.getElementById("options").value; // Obtiene el valor del select
+        const url = document.getElementById("options").value;
         if (url) {
-          // Si hay una URL seleccionada
-          window.location.href = url; // Navega a la URL especificada
+          window.location.href = url;
         }
       }
     </script>
