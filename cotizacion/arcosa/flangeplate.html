@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Precio OPGW Bracket</title>
+    <title>Precio Flange Plate</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
@@ -87,9 +87,9 @@
   </head>
   <body>
     <div class="container">
-      <h1>OPGW BRACKET</h1>
+      <h1>FLANGE PLATE</h1>
       <div align="center">
-        <img src="fotos/opgwbracket.jpg" alt="Imagen" style="width: 70%">
+        <img src="fotos/slideoverbang.jpg" alt="Imagen" style="width: 50%">
     </div>
       <h2>COTIZACIÓN CORTE</h2>
       <div class="input-group">
@@ -101,21 +101,24 @@
         />
       </div>
       <div class="input-group">
-        <label for="largo">LARGO DE LA PIEZA:</label>
+        <label for="diametroexteriorpieza">DIAMETRO EXTERIOR DE LA PIEZA:</label>
         <input
           type="number"
-          id="largo"
-          placeholder="Ingresa el dato en decimales"
+          id="diametroexteriorpieza"
+          placeholder="Dato de pulgadas en decimales"
         />
       </div>
       <div class="input-group">
-        <label for="ancho">ANCHO DE LA PIEZA:</label>
-        <input
-          type="number"
-          id="ancho"
-          placeholder="Ingresa el dato en decimales"
-        />
-      </div>
+        <div class="input-group">
+          <label for="diametrointeriorpieza">DIAMETRO INTERIOR DE LA PIEZA:</label>
+          <input
+            type="number"
+            id="diametrointeriorpieza"
+            placeholder="Dato de pulgadas en decimales"
+          />
+        </div>
+        <div class="input-group">
+
       <h2>COTIZACIÓN MAQUINADO</h2>
       <div class="input-group">
         <label for="cantidadbarrenos">CANTIDAD DE BARRENOS: (OPCIONAL)</label>
@@ -182,26 +185,25 @@
           value="0"
         />
       </div>
-      <h2>COTIZACIÓN DOBLEZ</h2>
+      <h2>COTIZACIÓN QUINTADO</h2>
       <div class="input-group">
-        <label for="cantidaddoblez">CANTIDAD DE DOBLECES:</label>
+        <label for="cantidadquintado">CANTIDAD DE LETRAS: (OPCIONAL)</label>
         <input
           type="number"
-          id="cantidaddoblez"
-          placeholder="Ingresa el número de dobleces"
+          id="cantidadquintado"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
         />
       </div>
-
       <div class="output" id="resultado">0 MXN</div>
       <button onclick="calcularPrecio()">Calcular</button>
       <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
     </div>
-
     <script>
       function calcularPrecio() {
         const espesorpieza = parseFloat(document.getElementById("espesorpieza").value) || 0;
-        const largo = parseFloat(document.getElementById("largo").value) || 0;
-        const ancho = parseFloat(document.getElementById("ancho").value) || 0;
+        const diametroexteriorpieza = parseFloat(document.getElementById("diametroexteriorpieza").value) || 0;
+        const diametrointeriorpieza = parseFloat(document.getElementById("diametrointeriorpieza").value) || 0;
         const cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value) || 0;
         const diametrobarrenos = parseFloat(document.getElementById("diametrobarrenos").value) || 0;
         const cantidadbarrenos2 = parseFloat(document.getElementById("cantidadbarrenos2").value) || 0;
@@ -209,7 +211,7 @@
         const cantidadchaflan = parseFloat(document.getElementById("cantidadchaflan").value) || 0;
         const cantidadbisel = parseFloat(document.getElementById("cantidadbisel").value) || 0;
         const largobisel = parseFloat(document.getElementById("largobisel").value) || 0;
-        const cantidaddoblez = parseFloat(document.getElementById("cantidaddoblez").value) || 0;
+        const cantidadquintado = parseFloat(document.getElementById("cantidadquintado").value) || 0;
 
         var preciocorteplasma = 0;
         var detallado = 1.1;
@@ -218,7 +220,7 @@
         var preciobarrenado = 0;
         var preciochaflan = 0;
         var preciobisel = 0;
-        var preciodoblez = 0;
+        var precioquintado = cantidadquintado * 5;
         
         // TABLA PRECIO CORTE PLASMA
         if (espesorpieza <= 0.5) {
@@ -235,14 +237,7 @@
           preciocorteplasma = 17.0;
         }
 
-        var perimetropieza = 2 * (largo + ancho);
-        
-        // TABLA DOBLEZ
-        if (largo < 39.37) {
-            preciodoblez = 20 * cantidaddoblez;
-        } else if (largo >= 39.37) {
-            preciodoblez = 40 * cantidaddoblez;  
-        }
+        var perimetropieza = (diametroexteriorpieza * 3.1416) + (diametrointeriorpieza * 3.1416);
 
         // TABLA ESPESOR
         if (espesorpieza <= 0.25) {
@@ -262,12 +257,11 @@
           preciobisel = largobisel * cantidadbisel * 10;
         }
 
-        var resultado = (preciocorte + preciobarrenado + preciochaflan + preciobisel + preciodoblez) * gn;
+        var resultado = (preciocorte + preciobarrenado + preciochaflan + preciobisel + precioquintado) * gn;
 
         document.getElementById("resultado").innerText =
           resultado.toFixed(2) + " MXN";
       }
     </script>
-
   </body>
 </html>
