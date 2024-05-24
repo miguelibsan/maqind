@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procesos anteriores no cerrados</title>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
     <script>
         (function(){
@@ -13,170 +12,115 @@
         })();
     </script>
     <style>
-        *{
-    font-family: 'Ubuntu', sans-serif;
-    margin:0; padding:0;
-    box-sizing: border-box;
-    outline: none; border:none;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: .2s linear;
-}
-
-.container{
-    background:linear-gradient(45deg, rgb(32, 0, 177), rgb(107, 210, 241));
-    padding:5px 9%;
-    padding-bottom: 96px;
-}
-
-.container .heading{
-    text-align: center;
-    padding-bottom: 15px;
-    padding-top: 5px;
-    color:#fff;
-    text-shadow: 0 5px 10px rgba(0,0,0,.2);
-    font-size: 50px;
-}
-
-.container .box-container{
-    display: grid;
-    padding-top: 40px;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap:15px;
-}
-
-.container .box-container .box{
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
-    border-radius: 5px;
-    background: #fff;
-    text-align: center;
-    padding:50px 15px;
-    width: 40%;
-    margin: 0 auto;
-}
-
-.container .box-container .box img{
-    height: 80px;
-}
-
-.container .box-container .box h3{
-    color:#444;
-    font-size: 22px;
-    padding:1px 0;
-}
-
-.container .box-container .box p{
-    color:#777;
-    font-size: 15px;
-    line-height: 1.8;
-}
-
-.container .box-container .box .btn{
-    margin-top: 10px;
-    display: inline-block;
-    background:#333;
-    color:#fff;
-    font-size: 17px;
-    border-radius: 5px;
-    padding: 8px 25px;
-}
-
-.container .box-container .box .btn:hover{
-    letter-spacing: 1px;
-}
-
-.container .box-container .box:hover{
-    box-shadow: 0 10px 15px rgba(0,0,0,.3);
-    transform: scale(1.03);
-}
-
-@media (max-width:768px){
-    .container{
-        padding:20px;
-    }
-}
-
-input::placeholder {
-    text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-   
-}
-
-input {
-    border: 2px solid #a1a1a1; /* Cambia el color del borde según tus preferencias */
-    border-radius: 5px; /* Ajusta el radio del borde para obtener bordes redondeados */
-    padding: 10px; /* Ajusta el espacio entre las letras y el borde */
-    text-align: center; /* Centra el texto ingresado */
-    border-radius: 5px; /* Ajusta el radio del borde para obtener bordes redondeados */
-}
-
-/* Estilo para el menú desplegable */
-select {
-    /* Centrar el texto */
-    text-align: center;
-    text-align-last: center;
-    font-family: 'Ubuntu', sans-serif;
-
-    /* Agregar un borde */
-    border: 2px solid #a1a1a1;
-    border-radius: 5px;
-
-    /* Otras propiedades para mejorar la apariencia */
-    padding: 8px;
-    margin: 8px;
-    font-size: 14px;
-    color: #a1a1a1;
-}
-
-/* Estilo para las opciones del menú desplegable */
-option {
-    /* Centrar el texto */
-    text-align: center;
-
-    /* Otras propiedades para mejorar la apariencia */
-    padding: 10px;
-}
-
+        body {
+            background-color: #3c3c3c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 100px;
+            padding-bottom: 100px;
+            font-family: "Roboto", sans-serif;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .input-group {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        label {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 2px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .output {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4caf50; /* Color específico del botón */
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049; /* Color del botón al pasar el cursor */
+        }
+        .hidden {
+            display: none;
+        }
     </style>
-
 </head>
 <body>
-    
     <div class="container">
-    
         <h1 class="heading">PROCESOS ANTERIORES NO CERRADOS</h1>
-        <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto; width: 25%; height: auto;">
-    
-        <div class="box-container">
-    
-            <div class="box">
-                <h3>Un operador no ha cerrado su proceso anterior correctamente.</h3>
-                <p><br><br></p>
-    
-                <!-- Agrega el formulario aquí -->
-                <form id="myForm">
-                    <select id="option" name="option" required>
-                        <option value="" disabled selected hidden>PROCESO NO CERRADO</option>
-                        <option value="Corte">Corte</option>
-                        <option value="Doblez">Doblez</option>
-                        <option value="Detallado">Detallado</option>
-                        <option value="Maquinado">Maquinado / Torno </option>
-                        <option value="Soldadura">Soldadura</option>
-                        <option value="Pintura">Pintura</option>
-                    </select>
-                        <input type="hidden" id="pin" name="pin" value="0001">
-                        <input type="hidden" id="tipo" name="tipo" value=" Procesos anteriores no cerrados "><br><BR><br> 
-                        <input type="number" id="id" name="input2" placeholder="ID DEL OPERADOR" required><br><BR><br>
-                        <input type="number" id="op" name="input3" placeholder="HOJA DE RUTA" required><br><BR><br>
-                        <input type="text" id="cliente" name="input4" placeholder="CLIENTE" required><br><BR><br>
-                                  
-                    <input type="submit" class="btn" value="Mandar Reporte">
-                </form>
-            </div>
+        <div align="center">
+            <img src="logo.png" alt="Imagen" style="width: 70%;" />
         </div>
-    
+        <h2>UN OPERADOR NO HA CERRADO SU PROCESO.</h2>
+        <form id="myForm">
+            <div class="input-group">
+                <select id="option" name="option" required>
+                    <option value="" disabled selected hidden>ELIGE EL PROCESO NO CERRADO</option>
+                    <option value="Corte">Corte</option>
+                    <option value="Doblez">Doblez</option>
+                    <option value="Detallado">Detallado</option>
+                    <option value="Maquinado">Maquinado / Torno</option>
+                    <option value="Soldadura">Soldadura</option>
+                    <option value="Pintura">Pintura</option>
+                </select>
+            </div>
+            <input type="hidden" id="pin" name="pin" value="0001">
+            <input type="hidden" id="tipo" name="tipo" value="Procesos anteriores no cerrados">
+            <div class="input-group">
+                <input type="number" id="id" name="input2" placeholder="ID DEL OPERADOR" required>
+            </div>
+            <div class="input-group">
+                <input type="number" id="op" name="input3" placeholder="HOJA DE RUTA" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="cliente" name="input4" placeholder="CLIENTE" required>
+            </div>
+            <button type="submit" class="button">MANDAR REPORTE</button>
+        </form>
     </div>
-
     <script>
         document.getElementById('myForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -190,6 +134,5 @@ option {
                 });
         });
     </script>
-    
 </body>
 </html>
