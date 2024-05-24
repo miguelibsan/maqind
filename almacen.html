@@ -1,129 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Almacén</title>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
     <script>
-        (function(){
-            emailjs.init("VQOpODo93LE-y3SEB");
-        })();
+      (function () {
+        emailjs.init("VQOpODo93LE-y3SEB");
+      })();
     </script>
     <style>
-        body {
-            background-color: #3c3c3c;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding-top: 100px;
-            padding-bottom: 100px;
-            font-family: "Roboto", sans-serif;
-        }
-        .container {
-            width: 80%;
-            max-width: 600px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 42px;
-            font-weight: bold;
-            text-align: center;
-        }
-        h2 {
-            font-size: 18px;
-            font-weight: bold;
-            text-align: left;
-            margin-bottom: 10px;
-        }
-        .input-group {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        label {
-            font-size: 18px;
-            font-weight: normal;
-            margin-bottom: 5px;
-            display: block;
-        }
-        input,
-        select,
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 2px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .output {
-            font-size: 24px;
-            margin-top: 20px;
-            color: #333;
-            font-weight: bold;
-        }
-        button {
-            background-color: #4caf50; /* Color específico del botón */
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #45a049; /* Color del botón al pasar el cursor */
-        }
-        .hidden {
-            display: none;
-        }
+      body {
+        background-color: #3c3c3c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        width: 80%;
+        max-width: 600px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-size: 42px;
+        font-weight: bold;
+        text-align: center;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: left;
+        margin-bottom: 10px;
+      }
+      .input-group {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      label {
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 5px;
+        display: block;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 2px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .output {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        font-weight: bold;
+      }
+      button {
+        background-color: #4caf50; /* Color específico del botón */
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: #45a049; /* Color del botón al pasar el cursor */
+      }
+      .hidden {
+        display: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1 class="heading">ALMACÉN</h1>
-        <div align="center">
-            <img src="logo.png" alt="Imagen" style="width: 70%;" />
+      <h1 class="heading">ALMACÉN</h1>
+      <div align="center">
+        <img src="logo.png" alt="Imagen" style="width: 70%" />
+      </div>
+      <h2>CONSULTA SOBRE LA HERRAMIENTA QUE NECESITO</h2>
+      <form id="myForm">
+        <input
+          class="input-group"
+          type="hidden"
+          id="pin"
+          name="pin"
+          value="0008"
+        />
+        <input
+          class="input-group"
+          type="hidden"
+          id="tipo"
+          name="tipo"
+          value="Procesos en OP fuera de orden"
+        />
+        <input
+          class="input-group"
+          type="hidden"
+          id="option"
+          name="option"
+          value=""
+        />
+        <div class="input-group">
+          <input
+            type="number"
+            id="id"
+            name="input2"
+            placeholder="ID DEL OPERADOR"
+            required
+          />
         </div>
-        <h2>CONSULTA SOBRE LA HERRAMIENTA QUE NECESITO</h2>
-        <form id="myForm">
-            <input class="input-group" type="hidden" id="pin" name="pin" value="0008">
-            <input class="input-group" type="hidden" id="tipo" name="tipo" value="Procesos en OP fuera de orden">
-            <input class="input-group" type="hidden" id="option" name="option" value="">
-            <div class="input-group">
-                <input type="number" id="id" name="input2" placeholder="ID DEL OPERADOR" required>
-            </div>
-            <div class="input-group">
-                <input type="text" id="descripcion" name="input5" placeholder="DESCRIBE TU SOLICITUD" required>
-            </div>
-            <input class="input-group" type="hidden" id="op" name="input3">
-            <input class="input-group" type="hidden" id="cliente" name="input4">
-            <button type="submit" class="button">MANDAR CONSULTA</button>
-        </form>
+        <div class="input-group">
+          <input
+            type="text"
+            id="descripcion"
+            name="input5"
+            placeholder="DESCRIBE TU SOLICITUD"
+            required
+          />
+        </div>
+        <input class="input-group" type="hidden" id="op" name="input3" />
+        <input class="input-group" type="hidden" id="cliente" name="input4" />
+        <button type="submit" class="button">MANDAR CONSULTA</button>
+      </form>
     </div>
 
     <script>
-        document.getElementById('myForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            emailjs.sendForm('service_lfglv3s', 'template_9q0jrsc', this)
-                .then(function() {
-                    console.log('¡Éxito!');
-                    alert("Reporte Entregado"); // Alerta después de enviar el correo
-                    window.location.href = "index.html"; // Redirección a index.html
-                }, function(error) {
-                    console.log('Error...', error);
-                    alert("Hubo un error al enviar el reporte. Inténtalo de nuevo.");
-                });
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          emailjs.sendForm("service_lfglv3s", "template_9q0jrsc", this).then(
+            function () {
+              console.log("¡Éxito!");
+              alert("Reporte Entregado"); // Alerta después de enviar el correo
+              window.location.href = "index.html"; // Redirección a index.html
+            },
+            function (error) {
+              console.log("Error...", error);
+              alert("Hubo un error al enviar el reporte. Inténtalo de nuevo.");
+            }
+          );
         });
     </script>
-</body>
+  </body>
 </html>

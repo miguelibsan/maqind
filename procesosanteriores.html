@@ -1,138 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Procesos anteriores no cerrados</title>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
     <script>
-        (function(){
-            emailjs.init("VQOpODo93LE-y3SEB");
-        })();
+      (function () {
+        emailjs.init("VQOpODo93LE-y3SEB");
+      })();
     </script>
     <style>
-        body {
-            background-color: #3c3c3c;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding-top: 100px;
-            padding-bottom: 100px;
-            font-family: "Roboto", sans-serif;
-        }
-        .container {
-            width: 80%;
-            max-width: 600px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 42px;
-            font-weight: bold;
-            text-align: center;
-        }
-        h2 {
-            font-size: 18px;
-            font-weight: bold;
-            text-align: left;
-            margin-bottom: 10px;
-        }
-        .input-group {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        label {
-            font-size: 18px;
-            font-weight: normal;
-            margin-bottom: 5px;
-            display: block;
-        }
-        input,
-        select,
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 2px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .output {
-            font-size: 24px;
-            margin-top: 20px;
-            color: #333;
-            font-weight: bold;
-        }
-        button {
-            background-color: #4caf50; /* Color específico del botón */
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #45a049; /* Color del botón al pasar el cursor */
-        }
-        .hidden {
-            display: none;
-        }
+      body {
+        background-color: #3c3c3c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        width: 80%;
+        max-width: 600px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-size: 42px;
+        font-weight: bold;
+        text-align: center;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: left;
+        margin-bottom: 10px;
+      }
+      .input-group {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      label {
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 5px;
+        display: block;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 2px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .output {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        font-weight: bold;
+      }
+      button {
+        background-color: #4caf50; /* Color específico del botón */
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: #45a049; /* Color del botón al pasar el cursor */
+      }
+      .hidden {
+        display: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1 class="heading">PROCESOS ANTERIORES NO CERRADOS</h1>
-        <div align="center">
-            <img src="logo.png" alt="Imagen" style="width: 70%;" />
+      <h1 class="heading">PROCESOS ANTERIORES NO CERRADOS</h1>
+      <div align="center">
+        <img src="logo.png" alt="Imagen" style="width: 70%" />
+      </div>
+      <h2>UN OPERADOR NO HA CERRADO SU PROCESO.</h2>
+      <form id="myForm">
+        <div class="input-group">
+          <select id="option" name="option" required>
+            <option value="" disabled selected hidden>
+              ELIGE EL PROCESO NO CERRADO
+            </option>
+            <option value="Corte">Corte</option>
+            <option value="Doblez">Doblez</option>
+            <option value="Detallado">Detallado</option>
+            <option value="Maquinado">Maquinado / Torno</option>
+            <option value="Soldadura">Soldadura</option>
+            <option value="Pintura">Pintura</option>
+          </select>
         </div>
-        <h2>UN OPERADOR NO HA CERRADO SU PROCESO.</h2>
-        <form id="myForm">
-            <div class="input-group">
-                <select id="option" name="option" required>
-                    <option value="" disabled selected hidden>ELIGE EL PROCESO NO CERRADO</option>
-                    <option value="Corte">Corte</option>
-                    <option value="Doblez">Doblez</option>
-                    <option value="Detallado">Detallado</option>
-                    <option value="Maquinado">Maquinado / Torno</option>
-                    <option value="Soldadura">Soldadura</option>
-                    <option value="Pintura">Pintura</option>
-                </select>
-            </div>
-            <input type="hidden" id="pin" name="pin" value="0001">
-            <input type="hidden" id="tipo" name="tipo" value="Procesos anteriores no cerrados">
-            <div class="input-group">
-                <input type="number" id="id" name="input2" placeholder="ID DEL OPERADOR" required>
-            </div>
-            <div class="input-group">
-                <input type="number" id="op" name="input3" placeholder="HOJA DE RUTA" required>
-            </div>
-            <div class="input-group">
-                <input type="text" id="cliente" name="input4" placeholder="CLIENTE" required>
-            </div>
-            <button type="submit" class="button">MANDAR REPORTE</button>
-        </form>
+        <input type="hidden" id="pin" name="pin" value="0001" />
+        <input
+          type="hidden"
+          id="tipo"
+          name="tipo"
+          value="Procesos anteriores no cerrados"
+        />
+        <div class="input-group">
+          <input
+            type="number"
+            id="id"
+            name="input2"
+            placeholder="ID DEL OPERADOR"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <input
+            type="number"
+            id="op"
+            name="input3"
+            placeholder="HOJA DE RUTA"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <input
+            type="text"
+            id="cliente"
+            name="input4"
+            placeholder="CLIENTE"
+            required
+          />
+        </div>
+        <button type="submit" class="button">MANDAR REPORTE</button>
+      </form>
     </div>
     <script>
-        document.getElementById('myForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            emailjs.sendForm('service_lfglv3s', 'template_9q0jrsc', this)
-                .then(function() {
-                    console.log('¡Éxito!');
-                    alert("Reporte Entregado"); // Alerta después de enviar el correo
-                    window.location.href = "index.html"; // Redirección a index.html
-                }, function(error) {
-                    console.log('Error...', error);
-                });
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          emailjs.sendForm("service_lfglv3s", "template_9q0jrsc", this).then(
+            function () {
+              console.log("¡Éxito!");
+              alert("Reporte Entregado"); // Alerta después de enviar el correo
+              window.location.href = "index.html"; // Redirección a index.html
+            },
+            function (error) {
+              console.log("Error...", error);
+            }
+          );
         });
     </script>
-</body>
+  </body>
 </html>
