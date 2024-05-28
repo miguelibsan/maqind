@@ -131,6 +131,7 @@
 
         var gn = 1.15;
         var preciodoblez = 0;
+        var detallado = 1.1;
         
         // TABLA DOBLEZ
         if (largo < 39.37) {
@@ -139,7 +140,7 @@
             preciodoblez = 40 * cantidaddoblez;  
         }
 
-        var preciocorte = numerocortes * 20;
+        var preciocorte = (numerocortes * 20) * 1.1;
         var resultado = (preciocorte + preciodoblez) * gn;
 
         document.getElementById("resultado").innerText =
