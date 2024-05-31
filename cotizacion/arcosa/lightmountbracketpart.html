@@ -258,7 +258,7 @@
         var preciochaflan = 0;
         var preciobisel = 0;
         var precioquintado = cantidadquintado * 5;
-        var precioslots = ((anchoslots * 3.1416) + (largoslots * 2)) * cantidadslots;
+        var perimetroslots = ((anchoslots * 3.1416) + (largoslots * 2)) * cantidadslots;
         var preciodoblez = 0;
         
         // TABLA PRECIO CORTE PLASMA
@@ -293,17 +293,17 @@
 
         // TABLA ESPESOR
         if (espesorpieza <= 0.25) {
-          preciocorte = (perimetropieza + precioslots + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
+          preciocorte = (perimetropieza + perimetroslots + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
           preciobarrenado = 0
           preciochaflan = cantidadchaflan * 10;
           preciobisel = largobisel * cantidadbisel * 10;
         } else if (espesorpieza <= 0.75) {
-          preciocorte = (perimetropieza + precioslots) * preciocorteplasma * detallado;
+          preciocorte = (perimetropieza + perimetroslots) * preciocorteplasma * detallado;
           preciobarrenado = (cantidadbarrenos + cantidadbarrenos2) * 20;
           preciochaflan = cantidadchaflan * 10;
           preciobisel = largobisel * cantidadbisel * 10;
         } else if (espesorpieza > 0.75) {
-          preciocorte = (perimetropieza + precioslots) * preciocorteplasma * detallado;
+          preciocorte = (perimetropieza + perimetroslots) * preciocorteplasma * detallado;
           preciobarrenado = ((((espesorpieza * 25) / 4.5) * 720) / 60) * (cantidadbarrenos + cantidadbarrenos2);
           preciochaflan = (((((espesorpieza * 25) / 4.5) * 720) / 60)) / 2 * cantidadchaflan;
           preciobisel = largobisel * cantidadbisel * 10;
