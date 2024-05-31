@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precio End Plate</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #3c3c3c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        width: 80%;
+        max-width: 600px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-size: 42px;
+        font-weight: bold;
+        text-align: center;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: left;
+        margin-bottom: 10px;
+      }
+      .input-group {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      label {
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 5px;
+        display: block;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 2px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .output {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        font-weight: bold;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>END PLATE</h1>
+      <div align="center">
+        <img src="fotos/endplate.png" alt="Imagen" style="width: 70%">
+    </div>
+      <h2>COTIZACIÓN CORTE</h2>
+      <div class="input-group">
+        <label for="espesorpieza">ESPESOR DE LA PIEZA:</label>
+        <input
+          type="number"
+          id="espesorpieza"
+          placeholder="Dato de pulgadas en decimales"
+        />
+      </div>
+      <div class="input-group">
+        <label for="largo">LARGO DE LA PIEZA:</label>
+        <input
+          type="number"
+          id="largo"
+          placeholder="Ingresa el dato en decimales"
+        />
+      </div>
+      <div class="input-group">
+        <label for="ancho">ANCHO DE LA PIEZA:</label>
+        <input
+          type="number"
+          id="ancho"
+          placeholder="Ingresa el dato en decimales"
+        />
+      </div>
+      <h2>COTIZACIÓN MAQUINADO</h2>
+      <div class="input-group">
+        <label for="cantidadbarrenos">CANTIDAD DE BARRENOS: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadbarrenos"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="diametrobarrenos">DIAMETRO DE BARRENOS: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="diametrobarrenos"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="cantidadbarrenos2">CANTIDAD DE BARRENOS: (DIFERENTES MEDIDAS)</label>
+        <input
+          type="number"
+          id="cantidadbarrenos2"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="diametrobarrenos2">DIAMETRO DE BARRENOS: (DIFERENTES MEDIDAS)</label>
+        <input
+          type="number"
+          id="diametrobarrenos2"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <h2>COTIZACIÓN CHAFLÁN</h2>
+      <div class="input-group">
+        <label for="cantidadchaflan">CANTIDAD DE CHAFLAN: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadchaflan"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <h2>COTIZACIÓN BISEL</h2>
+      <div class="input-group">
+        <label for="cantidadbisel">CANTIDAD DE BISELES: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadbisel"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="largobisel">LARGO DEL BISEL: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="largobisel"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <h2>COTIZACIÓN QUINTADO</h2>
+      <div class="input-group">
+        <label for="cantidadquintado">CANTIDAD DE LETRAS: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadquintado"
+          placeholder="Ingresa el dato en decimales"
+          value="0"
+        />
+      </div>
+      <div class="output" id="resultado">0 MXN</div>
+      <button onclick="calcularPrecio()">Calcular</button>
+      <button onclick="location.href='arcosa.html'">Nueva Cotización</button>
+    </div>
+
+    <script>
+      function calcularPrecio() {
+        const espesorpieza = parseFloat(document.getElementById("espesorpieza").value) || 0;
+        const largo = parseFloat(document.getElementById("largo").value) || 0;
+        const ancho = parseFloat(document.getElementById("ancho").value) || 0;
+        const cantidadbarrenos = parseFloat(document.getElementById("cantidadbarrenos").value) || 0;
+        const diametrobarrenos = parseFloat(document.getElementById("diametrobarrenos").value) || 0;
+        const cantidadbarrenos2 = parseFloat(document.getElementById("cantidadbarrenos2").value) || 0;
+        const diametrobarrenos2 = parseFloat(document.getElementById("diametrobarrenos2").value) || 0;
+        const cantidadchaflan = parseFloat(document.getElementById("cantidadchaflan").value) || 0;
+        const cantidadbisel = parseFloat(document.getElementById("cantidadbisel").value) || 0;
+        const largobisel = parseFloat(document.getElementById("largobisel").value) || 0;
+        const cantidadquintado = parseFloat(document.getElementById("cantidadquintado").value) || 0;
+
+        var preciocorteplasma = 0;
+        var detallado = 1.1;
+        var gn = 1.15;
+        var preciocorte = 0;
+        var preciobarrenado = 0;
+        var preciochaflan = 0;
+        var preciobisel = 0;
+        var precioquintado = cantidadquintado * 5;
+        
+        // TABLA PRECIO CORTE PLASMA
+        if (espesorpieza <= 0.5) {
+          preciocorteplasma = 1.5;
+        } else if (espesorpieza <= 1.0) {
+          preciocorteplasma = 3.5;
+        } else if (espesorpieza <= 1.5) {
+          preciocorteplasma = 5.5;
+        } else if (espesorpieza <= 2.0) {
+          preciocorteplasma = 9.0;
+        } else if (espesorpieza <= 2.5) {
+          preciocorteplasma = 14.0;
+        } else if (espesorpieza <= 3.0) {
+          preciocorteplasma = 17.0;
+        } else if (espesorpieza <= 3.5) {
+          preciocorteplasma = 33.0;
+        } else if (espesorpieza <= 4.0) {
+          preciocorteplasma = 41.0;
+        } else if (espesorpieza <= 4.5) {
+          preciocorteplasma = 50.0;
+        }
+
+        var perimetropieza = 2 * (largo + ancho);
+
+        // TABLA ESPESOR
+        if (espesorpieza <= 0.25) {
+          preciocorte = (perimetropieza + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
+          preciobarrenado = 0
+          preciochaflan = cantidadchaflan * 10;
+          preciobisel = largobisel * cantidadbisel * 10;
+        } else if (espesorpieza <= 0.75) {
+          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciobarrenado = (cantidadbarrenos + cantidadbarrenos2) * 20;
+          preciochaflan = cantidadchaflan * 10;
+          preciobisel = largobisel * cantidadbisel * 10;
+        } else if (espesorpieza > 0.75) {
+          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciobarrenado = ((((espesorpieza * 25) / 4.5) * 720) / 60) * (cantidadbarrenos + cantidadbarrenos2);
+          preciochaflan = (((((espesorpieza * 25) / 4.5) * 720) / 60)) / 2 * cantidadchaflan;
+          preciobisel = largobisel * cantidadbisel * 10;
+        }
+
+        var resultado = (preciocorte + preciobarrenado + preciochaflan + preciobisel + precioquintado) * gn;
+
+        document.getElementById("resultado").innerText =
+          resultado.toFixed(2) + " MXN";
+      }
+    </script>
+
+  </body>
+</html>
