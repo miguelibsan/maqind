@@ -116,6 +116,33 @@
           placeholder="Ingresa el dato en decimales"
         />
       </div>
+      <div class="input-group">
+        <label for="cantidadslots">CANTIDAD DE SLOTS: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="cantidadslots"
+          placeholder="Ingresa el dato en unidades"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="largoslots">LARGO DE SLOTS: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="largoslots"
+          placeholder="Ingresa el dato en unidades"
+          value="0"
+        />
+      </div>
+      <div class="input-group">
+        <label for="anchoslots">ANCHO DE SLOTS: (OPCIONAL)</label>
+        <input
+          type="number"
+          id="anchoslots"
+          placeholder="Ingresa el dato en unidades"
+          value="0"
+        />
+      </div>
       <h2>COTIZACIÓN MAQUINADO</h2>
       <div class="input-group">
         <label for="cantidadbarrenos">CANTIDAD DE BARRENOS: (OPCIONAL)</label>
@@ -219,8 +246,10 @@
         const largobisel = parseFloat(document.getElementById("largobisel").value) || 0;
         const cantidadquintado = parseFloat(document.getElementById("cantidadquintado").value) || 0;
         const cantidaddoblez = parseFloat(document.getElementById("cantidaddoblez").value) || 0;
-
-
+        const cantidadslots = parseFloat(document.getElementById("cantidadslots").value) || 0;
+        const anchoslots = parseFloat(document.getElementById("anchoslots").value) || 0;
+        const largoslots = parseFloat(document.getElementById("largoslots").value) || 0;
+        
         var preciocorteplasma = 0;
         var detallado = 1.1;
         var gn = 1.15;
@@ -229,6 +258,7 @@
         var preciochaflan = 0;
         var preciobisel = 0;
         var precioquintado = cantidadquintado * 5;
+        var precioslots = ((anchoslots * 3.1416) + (largoslots * 2)) * cantidadslots;
         var preciodoblez = 0;
         
         // TABLA PRECIO CORTE PLASMA
@@ -252,8 +282,7 @@
           preciocorteplasma = 50.0;
         }
 
-        const hipotenusa = Math.sqrt(Math.pow(ancho, 2) + Math.pow(largo, 2));
-        var perimetropieza = ancho + largo + hipotenusa;
+        var perimetropieza = ancho + largo;
 
         // TABLA DOBLEZ
         if (largo < 39.37) {
@@ -264,17 +293,17 @@
 
         // TABLA ESPESOR
         if (espesorpieza <= 0.25) {
-          preciocorte = (perimetropieza + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
+          preciocorte = (perimetropieza + precioslots + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado;  
           preciobarrenado = 0
           preciochaflan = cantidadchaflan * 10;
           preciobisel = largobisel * cantidadbisel * 10;
         } else if (espesorpieza <= 0.75) {
-          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciocorte = (perimetropieza + precioslots) * preciocorteplasma * detallado;
           preciobarrenado = (cantidadbarrenos + cantidadbarrenos2) * 20;
           preciochaflan = cantidadchaflan * 10;
           preciobisel = largobisel * cantidadbisel * 10;
         } else if (espesorpieza > 0.75) {
-          preciocorte = perimetropieza * preciocorteplasma * detallado;
+          preciocorte = (perimetropieza + precioslots) * preciocorteplasma * detallado;
           preciobarrenado = ((((espesorpieza * 25) / 4.5) * 720) / 60) * (cantidadbarrenos + cantidadbarrenos2);
           preciochaflan = (((((espesorpieza * 25) / 4.5) * 720) / 60)) / 2 * cantidadchaflan;
           preciobisel = largobisel * cantidadbisel * 10;
