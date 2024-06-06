@@ -1,122 +1,31 @@
-import tkinter as tk
-from tkinter import messagebox
+import openpyxl
 
-def calcular_precio():
-    try:
-        espesorpieza = float(entry_espesorpieza.get())
-        diametroexteriorpieza = float(entry_diametroexteriorpieza.get())
-        diametrointeriorpieza = float(entry_diametrointeriorpieza.get())
-        cantidadbarrenos = float(entry_cantidadbarrenos.get() or 0)
-        diametrobarrenos = float(entry_diametrobarrenos.get() or 0)
-        cantidadbarrenos2 = float(entry_cantidadbarrenos2.get() or 0)
-        diametrobarrenos2 = float(entry_diametrobarrenos2.get() or 0)
-        cantidadchaflan = float(entry_cantidadchaflan.get() or 0)
-        cantidadbisel = float(entry_cantidadbisel.get() or 0)
-        largobisel = float(entry_largobisel.get() or 0)
-        cantidadquintado = float(entry_cantidadquintado.get() or 0)
-        
-        detallado = 1.1
-        gn = 1.15
-        precioquintado = cantidadquintado * 5
-        
-        # Tabla precio corte plasma
-        if (espesorpieza <= 0.5):
-            preciocorteplasma = 1.5
-        elif (espesorpieza <= 1.0):
-            preciocorteplasma = 3.5
-        elif (espesorpieza <= 1.5):
-            preciocorteplasma = 5.5
-        elif (espesorpieza <= 2.0):
-            preciocorteplasma = 9.0
-        elif (espesorpieza <= 2.5):
-            preciocorteplasma = 14.0
-        elif (espesorpieza <= 3.0):
-            preciocorteplasma = 17.0
-        elif (espesorpieza <= 3.5):
-            preciocorteplasma = 33.0
-        elif (espesorpieza <= 4.0):
-            preciocorteplasma = 41.0
-        elif (espesorpieza <= 4.5):
-            preciocorteplasma = 50.0
-        else:
-            preciocorteplasma = 0  # Si el espesor es mayor a 4.5, no se define el precio
-        
-        perimetropieza = (diametroexteriorpieza * 3.1416) + (diametrointeriorpieza * 3.1416)
-        
-        # Tabla espesor
-        if (espesorpieza <= 0.25):
-            preciocorte = (perimetropieza + ((diametrobarrenos * 3.1416) * cantidadbarrenos) + ((diametrobarrenos2 * 3.1416) * cantidadbarrenos2)) * preciocorteplasma * detallado
-            preciobarrenado = 0
-            preciochaflan = cantidadchaflan * 10
-            preciobisel = largobisel * cantidadbisel * 10
-        elif (espesorpieza <= 0.75):
-            preciocorte = perimetropieza * preciocorteplasma * detallado
-            preciobarrenado = (cantidadbarrenos + cantidadbarrenos2) * 20
-            preciochaflan = cantidadchaflan * 10
-            preciobisel = largobisel * cantidadbisel * 10
-        else:
-            preciocorte = perimetropieza * preciocorteplasma * detallado
-            preciobarrenado = ((((espesorpieza * 25) / 4.5) * 720) / 60) * (cantidadbarrenos + cantidadbarrenos2)
-            preciochaflan = (((((espesorpieza * 25) / 4.5) * 720) / 60)) / 2 * cantidadchaflan
-            preciobisel = largobisel * cantidadbisel * 10
-        
-        resultado = (preciocorte + preciobarrenado + preciochaflan + preciobisel + precioquintado) * gn
-        
-        label_resultado.config(text=f"{round(resultado, 2)} MXN")
-    except ValueError:
-        messagebox.showerror("Error", "Por favor ingresa todos los valores correctamente.")
+# Leer el primer archivo
+file1_path = '/Users/miguelibarra/Documentos/maqind/Python/alv.xlsx'
+wb1 = openpyxl.load_workbook(file1_path)
+ws1 = wb1.active
 
-# Configuración de la interfaz gráfica
-root = tk.Tk()
-root.title("Precio Base Plate")
+# Leer el segundo archivo
+file2_path = '/Users/miguelibarra/Documentos/maqind/Python/maq.xlsx'
+wb2 = openpyxl.load_workbook(file2_path)
+ws2 = wb2.active
 
-tk.Label(root, text="ESPESOR DE LA PIEZA:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
-entry_espesorpieza = tk.Entry(root)
-entry_espesorpieza.grid(row=0, column=1, padx=10, pady=5)
+# Eliminar la primera fila del segundo archivo
+ws2.delete_rows(1)
+ws1.delete_rows(1)
 
-tk.Label(root, text="DIAMETRO EXTERIOR DE LA PIEZA:").grid(row=1, column=0, padx=10, pady=5, sticky="e")
-entry_diametroexteriorpieza = tk.Entry(root)
-entry_diametroexteriorpieza.grid(row=1, column=1, padx=10, pady=5)
 
-tk.Label(root, text="DIAMETRO INTERIOR DE LA PIEZA:").grid(row=2, column=0, padx=10, pady=5, sticky="e")
-entry_diametrointeriorpieza = tk.Entry(root)
-entry_diametrointeriorpieza.grid(row=2, column=1, padx=10, pady=5)
+# Copiar los datos del segundo archivo al final del primer archivo
+for row in ws2.iter_rows(min_row=1, values_only=True):
+    ws1.append(row)
 
-tk.Label(root, text="CANTIDAD DE BARRENOS:").grid(row=3, column=0, padx=10, pady=5, sticky="e")
-entry_cantidadbarrenos = tk.Entry(root)
-entry_cantidadbarrenos.grid(row=3, column=1, padx=10, pady=5)
+# Especificar las columnas a eliminar (basado en el índice, por ejemplo, B, C, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U)
+columns_to_delete = ['B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U']
+for col in sorted(columns_to_delete, reverse=True):
+    ws1.delete_cols(openpyxl.utils.column_index_from_string(col))
 
-tk.Label(root, text="DIAMETRO DE BARRENOS:").grid(row=4, column=0, padx=10, pady=5, sticky="e")
-entry_diametrobarrenos = tk.Entry(root)
-entry_diametrobarrenos.grid(row=4, column=1, padx=10, pady=5)
+# Guardar el resultado en un nuevo archivo
+output_path = '/Users/miguelibarra/Documentos/maqind/Python/smo.xlsx'
+wb1.save(output_path)
 
-tk.Label(root, text="CANTIDAD DE BARRENOS (DIFERENTES MEDIDAS):").grid(row=5, column=0, padx=10, pady=5, sticky="e")
-entry_cantidadbarrenos2 = tk.Entry(root)
-entry_cantidadbarrenos2.grid(row=5, column=1, padx=10, pady=5)
-
-tk.Label(root, text="DIAMETRO DE BARRENOS (DIFERENTES MEDIDAS):").grid(row=6, column=0, padx=10, pady=5, sticky="e")
-entry_diametrobarrenos2 = tk.Entry(root)
-entry_diametrobarrenos2.grid(row=6, column=1, padx=10, pady=5)
-
-tk.Label(root, text="CANTIDAD DE CHAFLAN:").grid(row=7, column=0, padx=10, pady=5, sticky="e")
-entry_cantidadchaflan = tk.Entry(root)
-entry_cantidadchaflan.grid(row=7, column=1, padx=10, pady=5)
-
-tk.Label(root, text="CANTIDAD DE BISELES:").grid(row=8, column=0, padx=10, pady=5, sticky="e")
-entry_cantidadbisel = tk.Entry(root)
-entry_cantidadbisel.grid(row=8, column=1, padx=10, pady=5)
-
-tk.Label(root, text="LARGO DEL BISEL:").grid(row=9, column=0, padx=10, pady=5, sticky="e")
-entry_largobisel = tk.Entry(root)
-entry_largobisel.grid(row=9, column=1, padx=10, pady=5)
-
-tk.Label(root, text="CANTIDAD DE LETRAS:").grid(row=10, column=0, padx=10, pady=5, sticky="e")
-entry_cantidadquintado = tk.Entry(root)
-entry_cantidadquintado.grid(row=10, column=1, padx=10, pady=5)
-
-tk.Button(root, text="Calcular", command=calcular_precio).grid(row=11, column=0, columnspan=2, pady=10)
-
-label_resultado = tk.Label(root, text="0 MXN", font=("Helvetica", 16, "bold"))
-label_resultado.grid(row=12, column=0, columnspan=2, pady=10)
-
-root.mainloop()
+print("Los datos se han combinado y guardado en 'smo.xlsx' con las columnas especificadas eliminadas.")
