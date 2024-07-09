@@ -1,294 +1,155 @@
 import tkinter as tk
-from tkinter import messagebox
-import sqlite3
+from tkinter import ttk
+import pandas as pd
 import time
+import pickle
 import os
 
-# Conexión a la base de datos SQLite
-db_path = 'operadores_piezas.db'
-conn = sqlite3.connect(db_path)
-c = conn.cursor()
+# Inicialización de datos
+operadores = []
+diseños = []
+registros = []
 
-# Crear tablas
-c.execute('''CREATE TABLE IF NOT EXISTS operadores (
-                id INTEGER PRIMARY KEY,
-                nombre TEXT NOT NULL)''')
+# Funciones para manejar el almacenamiento de datos
+def cargar_datos():
+    global operadores, diseños, registros
+    if os.path.exists('datos.pkl'):
+        with open('datos.pkl', 'rb') as f:
+            operadores, diseños, registros = pickle.load(f)
 
-c.execute('''CREATE TABLE IF NOT EXISTS piezas (
-                id INTEGER PRIMARY KEY,
-                nombre TEXT NOT NULL)''')
+def guardar_datos():
+    with open('datos.pkl', 'wb') as f:
+        pickle.dump((operadores, diseños, registros), f)
 
-c.execute('''CREATE TABLE IF NOT EXISTS tiempos (
-                id INTEGER PRIMARY KEY,
-                operador_id INTEGER,
-                pieza_id INTEGER,
-                tiempo REAL,
-                FOREIGN KEY (operador_id) REFERENCES operadores (id),
-                FOREIGN KEY (pieza_id) REFERENCES piezas (id))''')
-
-c.execute('''CREATE TABLE IF NOT EXISTS estado (
-                id INTEGER PRIMARY KEY,
-                operador_id INTEGER,
-                pieza_id INTEGER,
-                inicio REAL,
-                FOREIGN KEY (operador_id) REFERENCES operadores (id),
-                FOREIGN KEY (pieza_id) REFERENCES piezas (id))''')
-
-conn.commit()
-
-# Funciones
+# Funciones para manejar registros
 def agregar_operador():
-    nombre = operador_entry.get()
-    if nombre:
-        c.execute("SELECT nombre FROM operadores WHERE nombre=?", (nombre,))
-        if c.fetchone():
-            messagebox.showwarning("Advertencia", "El nombre del operador ya existe.")
-        else:
-            c.execute("INSERT INTO operadores (nombre) VALUES (?)", (nombre,))
-            conn.commit()
-            actualizar_listas()
-            operador_entry.delete(0, tk.END)
-    else:
-        messagebox.showwarning("Advertencia", "El nombre del operador no puede estar vacío.")
-
-def eliminar_operador():
-    nombre = operador_entry.get()
-    if nombre:
-        c.execute("DELETE FROM operadores WHERE nombre=?", (nombre,))
-        conn.commit()
-        actualizar_listas()
+    operador = operador_entry.get()
+    if operador and operador not in operadores:
+        operadores.append(operador)
         operador_entry.delete(0, tk.END)
-    else:
-        messagebox.showwarning("Advertencia", "El nombre del operador no puede estar vacío.")
-
-def agregar_pieza():
-    nombre = pieza_entry.get()
-    if nombre:
-        c.execute("SELECT nombre FROM piezas WHERE nombre=?", (nombre,))
-        if c.fetchone():
-            messagebox.showwarning("Advertencia", "El nombre de la pieza ya existe.")
-        else:
-            c.execute("INSERT INTO piezas (nombre) VALUES (?)", (nombre,))
-            conn.commit()
-            actualizar_listas()
-            pieza_entry.delete(0, tk.END)
-    else:
-        messagebox.showwarning("Advertencia", "El nombre de la pieza no puede estar vacío.")
-
-def eliminar_pieza():
-    nombre = pieza_entry.get()
-    if nombre:
-        c.execute("DELETE FROM piezas WHERE nombre=?", (nombre,))
-        conn.commit()
-        actualizar_listas()
-        pieza_entry.delete(0, tk.END)
-    else:
-        messagebox.showwarning("Advertencia", "El nombre de la pieza no puede estar vacío.")
-
-def actualizar_listas():
-    operadores_listbox.delete(0, tk.END)
-    piezas_listbox.delete(0, tk.END)
-    c.execute("SELECT nombre FROM operadores")
-    operadores = c.fetchall()
-    for operador in operadores:
-        operadores_listbox.insert(tk.END, operador[0])
-
-    c.execute("SELECT nombre FROM piezas")
-    piezas = c.fetchall()
-    for pieza in piezas:
-        piezas_listbox.insert(tk.END, pieza[0])
-
-    for i in range(10):
-        operadores_menu[i]["menu"].delete(0, "end")
-        piezas_menu[i]["menu"].delete(0, "end")
-        for operador in operadores:
-            operadores_menu[i]["menu"].add_command(label=operador[0], command=tk._setit(operadores_seleccion[i], operador[0]))
-        for pieza in piezas:
-            piezas_menu[i]["menu"].add_command(label=pieza[0], command=tk._setit(piezas_seleccion[i], pieza[0]))
-
-    consulta_operador_menu["menu"].delete(0, "end")
-    consulta_pieza_menu["menu"].delete(0, "end")
-    for operador in operadores:
-        consulta_operador_menu["menu"].add_command(label=operador[0], command=tk._setit(consulta_operador, operador[0]))
-    for pieza in piezas:
-        consulta_pieza_menu["menu"].add_command(label=pieza[0], command=tk._setit(consulta_pieza, pieza[0]))
+        operador_menu['menu'].add_command(label=operador, command=tk._setit(operador_var, operador))
+        calcular_menu['menu'].add_command(label=operador, command=tk._setit(calcular_operador_var, operador))
+        guardar_datos()
+        
+def agregar_diseño():
+    diseño = diseño_entry.get()
+    if diseño and diseño not in diseños:
+        diseños.append(diseño)
+        diseño_entry.delete(0, tk.END)
+        diseño_menu['menu'].add_command(label=diseño, command=tk._setit(diseño_var, diseño))
+        calcular_diseño_menu['menu'].add_command(label=diseño, command=tk._setit(calcular_diseño_var, diseño))
+        guardar_datos()
 
 def iniciar_tiempo(index):
-    operador = operadores_seleccion[index].get()
-    pieza = piezas_seleccion[index].get()
-    if operador and pieza:
-        c.execute("SELECT id FROM operadores WHERE nombre=?", (operador,))
-        operador_id = c.fetchone()[0]
-        c.execute("SELECT id FROM piezas WHERE nombre=?", (pieza,))
-        pieza_id = c.fetchone()[0]
-        inicio = time.time()
-        c.execute("INSERT INTO estado (operador_id, pieza_id, inicio) VALUES (?, ?, ?)", (operador_id, pieza_id, inicio))
-        conn.commit()
-        tiempos_inicio[index] = inicio
-        botones_iniciar[index].config(bg="lightgreen")
-        indicadores_tiempo[index].config(text="En marcha")
-    else:
-        messagebox.showwarning("Advertencia", "Debes seleccionar un operador y una pieza antes de iniciar el tiempo.")
+    global start_times
+    start_times[index] = time.time()
+    status_labels[index].config(text="El tiempo está corriendo...")
 
 def terminar_tiempo(index):
-    if tiempos_inicio[index] is not None:
-        tiempo_final = time.time()
-        tiempo_total = tiempo_final - tiempos_inicio[index]
-        operador = operadores_seleccion[index].get()
-        pieza = piezas_seleccion[index].get()
-        c.execute("SELECT id FROM operadores WHERE nombre=?", (operador,))
-        operador_id = c.fetchone()[0]
-        c.execute("SELECT id FROM piezas WHERE nombre=?", (pieza,))
-        pieza_id = c.fetchone()[0]
-        c.execute("INSERT INTO tiempos (operador_id, pieza_id, tiempo) VALUES (?, ?, ?)", (operador_id, pieza_id, tiempo_total))
-        c.execute("DELETE FROM estado WHERE operador_id=? AND pieza_id=?", (operador_id, pieza_id))
-        conn.commit()
-        tiempos_inicio[index] = None
-        botones_iniciar[index].config(bg="white")
-        indicadores_tiempo[index].config(text="")
-    else:
-        messagebox.showwarning("Advertencia", "Debes iniciar el tiempo antes de terminarlo.")
+    end_time = time.time()
+    elapsed_time = end_time - start_times[index]
+    registros.append({
+        'Operador': operador_vars[index].get(),
+        'Diseño': diseño_vars[index].get(),
+        'Tiempo': elapsed_time
+    })
+    status_labels[index].config(text="Registro guardado.")
+    guardar_datos()
 
-def borrar_registro(index):
-    operadores_seleccion[index].set('')
-    piezas_seleccion[index].set('')
-    indicadores_tiempo[index].config(text="")
+def mostrar_promedios():
+    operador = calcular_operador_var.get()
+    diseño = calcular_diseño_var.get()
+    
+    df = pd.DataFrame(registros)
+    if not df.empty:
+        if operador:
+            df_operador = df[df['Operador'] == operador]
+            promedio_operador = df_operador['Tiempo'].mean()
+            promedio_label.config(text=f"Promedio de tiempo para {operador}: {promedio_operador:.2f} segundos")
+        
+        if diseño:
+            df_diseño = df[df['Diseño'] == diseño]
+            promedio_diseño = df_diseño['Tiempo'].mean()
+            promedio_label.config(text=f"Promedio de tiempo para {diseño}: {promedio_diseño:.2f} segundos")
 
-def consultar_promedio():
-    pieza = consulta_pieza.get()
-    if pieza:
-        c.execute("SELECT id FROM piezas WHERE nombre=?", (pieza,))
-        pieza_id = c.fetchone()
-        if pieza_id:
-            c.execute("SELECT AVG(tiempo), COUNT(tiempo) FROM tiempos WHERE pieza_id=?", (pieza_id[0],))
-            resultado_consulta = c.fetchone()
-            promedio = resultado_consulta[0]
-            conteo = resultado_consulta[1]
-            if promedio and conteo:
-                resultado_texto = f"Promedio de tiempo: {promedio:.2f} segundos (calculado en {conteo} veces)\n"
-                # Mostrar el promedio de cada operador que ha hecho esa pieza
-                c.execute("SELECT operadores.nombre, AVG(tiempos.tiempo) FROM tiempos JOIN operadores ON tiempos.operador_id=operadores.id WHERE pieza_id=? GROUP BY operador_id", (pieza_id[0],))
-                promedios_operadores = c.fetchall()
-                resultado_texto += "Promedio por operador:\n"
-                for po in promedios_operadores:
-                    resultado_texto += f"{po[0]}: {po[1]:.2f} segundos\n"
-                resultado.set(resultado_texto)
-            else:
-                resultado.set("No hay datos suficientes para calcular el promedio.")
-        else:
-            resultado.set("Pieza no encontrada.")
-    else:
-        resultado.set("Debes seleccionar una pieza.")
+def buscar_diseño(event, index):
+    search_text = event.widget.get()
+    matching_diseños = [diseño for diseño in diseños if search_text.lower() in diseño.lower()]
+    diseño_menu_vars[index]['menu'].delete(0, 'end')
+    for diseño in matching_diseños:
+        diseño_menu_vars[index]['menu'].add_command(label=diseño, command=tk._setit(diseño_vars[index], diseño))
 
-# Interfaz gráfica
+# Creación de la ventana principal
 root = tk.Tk()
-root.title("Registro de Tiempo de Operadores")
+root.title("Registro de Tiempos de Operadores")
 
-def on_closing():
-    if messagebox.askokcancel("Salir", "¿Quieres salir?"):
-        root.destroy()
+# Cargar datos guardados
+cargar_datos()
 
-root.protocol("WM_DELETE_WINDOW", on_closing)
+# Sección de registros
+registros_frame = ttk.LabelFrame(root, text="Registros")
+registros_frame.grid(row=0, column=0, padx=10, pady=10)
 
-# Sección de agregar/eliminar operadores y piezas
-frame_agregar = tk.Frame(root)
-frame_agregar.pack(pady=10)
-
-tk.Label(frame_agregar, text="Operador:").grid(row=0, column=0)
-operador_entry = tk.Entry(frame_agregar)
+tk.Label(registros_frame, text="Operador:").grid(row=0, column=0)
+operador_entry = tk.Entry(registros_frame)
 operador_entry.grid(row=0, column=1)
+tk.Button(registros_frame, text="Agregar Operador", command=agregar_operador).grid(row=0, column=2)
 
-tk.Button(frame_agregar, text="Agregar Operador", command=agregar_operador).grid(row=0, column=2)
-tk.Button(frame_agregar, text="Eliminar Operador", command=eliminar_operador).grid(row=0, column=3)
+tk.Label(registros_frame, text="Diseño:").grid(row=1, column=0)
+diseño_entry = tk.Entry(registros_frame)
+diseño_entry.grid(row=1, column=1)
+tk.Button(registros_frame, text="Agregar Diseño", command=agregar_diseño).grid(row=1, column=2)
 
-tk.Label(frame_agregar, text="Pieza:").grid(row=1, column=0)
-pieza_entry = tk.Entry(frame_agregar)
-pieza_entry.grid(row=1, column=1)
+# Sección de menú de selección
+seleccion_frame = ttk.LabelFrame(root, text="Selección")
+seleccion_frame.grid(row=1, column=0, padx=10, pady=10)
 
-tk.Button(frame_agregar, text="Agregar Pieza", command=agregar_pieza).grid(row=1, column=2)
-tk.Button(frame_agregar, text="Eliminar Pieza", command=eliminar_pieza).grid(row=1, column=3)
-
-# Listas de operadores y piezas
-frame_listas = tk.Frame(root)
-frame_listas.pack(pady=10)
-
-operadores_listbox = tk.Listbox(frame_listas, height=5)
-operadores_listbox.grid(row=0, column=0, padx=10)
-
-piezas_listbox = tk.Listbox(frame_listas, height=5)
-piezas_listbox.grid(row=0, column=1, padx=10)
-
-# Sección de registro de tiempos
-frame_registro = tk.Frame(root)
-frame_registro.pack(pady=10)
-
-operadores_seleccion = []
-piezas_seleccion = []
-tiempos_inicio = [None] * 10
-operadores_menu = []
-piezas_menu = []
-botones_iniciar = []
-indicadores_tiempo = []
+operador_vars = []
+diseño_vars = []
+diseño_search_entries = []
+diseño_menu_vars = []
+status_labels = []
+start_times = [None] * 10
 
 for i in range(10):
-    operador_seleccion = tk.StringVar()
-    operadores_seleccion.append(operador_seleccion)
-    pieza_seleccion = tk.StringVar()
-    piezas_seleccion.append(pieza_seleccion)
-
-    operadores_menu.append(tk.OptionMenu(frame_registro, operador_seleccion, ""))
-    operadores_menu[i].grid(row=i, column=0)
-
-    piezas_menu.append(tk.OptionMenu(frame_registro, pieza_seleccion, ""))
-    piezas_menu[i].grid(row=i, column=1)
-
-    btn_iniciar = tk.Button(frame_registro, text="Iniciar", command=lambda i=i: iniciar_tiempo(i))
-    btn_iniciar.grid(row=i, column=2)
-    botones_iniciar.append(btn_iniciar)
-
-    tk.Button(frame_registro, text="Terminar", command=lambda i=i: terminar_tiempo(i)).grid(row=i, column=3)
-    tk.Button(frame_registro, text="Borrar", command=lambda i=i: borrar_registro(i)).grid(row=i, column=4)
+    operador_var = tk.StringVar()
+    operador_vars.append(operador_var)
+    operador_menu = ttk.OptionMenu(seleccion_frame, operador_var, "Selecciona un Operador", *operadores)
+    operador_menu.grid(row=i, column=0)
     
-    indicador_tiempo = tk.Label(frame_registro, text="")
-    indicador_tiempo.grid(row=i, column=5)
-    indicadores_tiempo.append(indicador_tiempo)
+    diseño_var = tk.StringVar()
+    diseño_vars.append(diseño_var)
+    diseño_search_entry = tk.Entry(seleccion_frame)
+    diseño_search_entry.grid(row=i, column=1)
+    diseño_search_entry.bind("<KeyRelease>", lambda event, index=i: buscar_diseño(event, index))
+    diseño_search_entries.append(diseño_search_entry)
+    
+    diseño_menu_var = ttk.OptionMenu(seleccion_frame, diseño_var, "Selecciona un Diseño")
+    diseño_menu_var.grid(row=i, column=2)
+    diseño_menu_vars.append(diseño_menu_var)
 
-# Sección de consulta de promedios
-frame_consulta = tk.Frame(root)
-frame_consulta.pack(pady=10)
+    tk.Button(seleccion_frame, text="Iniciar", command=lambda index=i: iniciar_tiempo(index)).grid(row=i, column=3)
+    tk.Button(seleccion_frame, text="Terminar", command=lambda index=i: terminar_tiempo(index)).grid(row=i, column=4)
 
-tk.Label(frame_consulta, text="Operador:").grid(row=0, column=0)
-consulta_operador = tk.StringVar()
-consulta_operador_menu = tk.OptionMenu(frame_consulta, consulta_operador, "")
-consulta_operador_menu.grid(row=0, column=1)
+    status_label = tk.Label(seleccion_frame, text="")
+    status_label.grid(row=i, column=5)
+    status_labels.append(status_label)
 
-tk.Label(frame_consulta, text="Pieza:").grid(row=1, column=0)
-consulta_pieza = tk.StringVar()
-consulta_pieza_menu = tk.OptionMenu(frame_consulta, consulta_pieza, "")
-consulta_pieza_menu.grid(row=1, column=1)
+# Sección de promedios
+calcular_frame = ttk.LabelFrame(root, text="Calcular Promedios")
+calcular_frame.grid(row=2, column=0, padx=10, pady=10)
 
-tk.Button(frame_consulta, text="Consultar Promedio", command=consultar_promedio).grid(row=2, column=0, columnspan=2)
+calcular_operador_var = tk.StringVar()
+calcular_menu = ttk.OptionMenu(calcular_frame, calcular_operador_var, "Selecciona un Operador", *operadores)
+calcular_menu.grid(row=0, column=0)
 
-resultado = tk.StringVar()
-tk.Label(frame_consulta, textvariable=resultado).grid(row=3, column=0, columnspan=2)
+calcular_diseño_var = tk.StringVar()
+calcular_diseño_menu = ttk.OptionMenu(calcular_frame, calcular_diseño_var, "Selecciona un Diseño", *diseños)
+calcular_diseño_menu.grid(row=0, column=1)
 
-actualizar_listas()
+tk.Button(calcular_frame, text="Mostrar Promedios", command=mostrar_promedios).grid(row=0, column=2)
 
-# Restaurar estado al iniciar
-c.execute("SELECT operador_id, pieza_id, inicio FROM estado")
-for estado in c.fetchall():
-    operador_id, pieza_id, inicio = estado
-    c.execute("SELECT nombre FROM operadores WHERE id=?", (operador_id,))
-    operador_nombre = c.fetchone()[0]
-    c.execute("SELECT nombre FROM piezas WHERE id=?", (pieza_id,))
-    pieza_nombre = c.fetchone()[0]
-    for i in range(10):
-        if not operadores_seleccion[i].get() and not piezas_seleccion[i].get():
-            operadores_seleccion[i].set(operador_nombre)
-            piezas_seleccion[i].set(pieza_nombre)
-            tiempos_inicio[i] = inicio
-            botones_iniciar[i].config(bg="lightgreen")
-            indicadores_tiempo[i].config(text="En marcha")
-            break
+promedio_label = tk.Label(calcular_frame, text="")
+promedio_label.grid(row=1, column=0, columnspan=3)
 
 root.mainloop()
